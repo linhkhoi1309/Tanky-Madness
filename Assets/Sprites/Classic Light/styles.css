@@ -1,0 +1,288 @@
+@font-face {
+  font-family: TankTrouble;
+  src: url("https://raw.githubusercontent.com/tangye1234/ZVCloud/refs/heads/master/assets/fonts/eurostile-bold.ttf");
+}
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    transform: translateX(-60%) scale(0);
+  }
+}
+@keyframes moveRight {
+  0% {
+    transform: translateX(-60%) scale(0);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+#game {
+    top: 0;
+}
+.premium #header {
+    background-image: url(../assets/images/header/background.png);
+    background-size: 80px 80px;
+}
+:root.dark .premium #header {
+    background-image: url(chrome-extension://ekjcldgkpfdnnffgliempinlpnjioebk/assets/darktheme/header/background.avif) !important;
+}
+#header {
+    background-image: url(../assets/images/header/background.png);
+    background-size: 80px 80px;
+}
+:root.dark #header {
+    background-image: url(chrome-extension://ekjcldgkpfdnnffgliempinlpnjioebk/assets/darktheme/header/background.avif) !important;
+}
+#contentWrapper {
+  margin-top: 0;
+  padding-top: 10px;
+  z-index: 1;
+}
+.snippet.important {
+  background: #ff0000;
+}
+:root.dark .snippet.important {
+  background: #ff0000 !important;
+}
+.snippet.standard,
+#statisticsSnippet,
+#messagesSnippet {
+  background: #ffffff !important;
+  color: #4a4a4a;
+  font-family: Arial, sans-serif;
+  border: 3px solid #d3d3d3;
+  width: calc(100% - 6px) !important;
+}
+:root.dark .snippet.standard,
+:root.dark #statisticsSnippet,
+:root.dark #messagesSnippet {
+  background: #1a1a1a !important;
+  color: #eee !important;
+  border: 3px solid #444444;
+}
+:root.dark #statisticsSnippet.snippet {
+  background: #1a1a1a !important;
+}
+.snippet.standard .header,
+#messagesSnippet .header {
+  background: #d3d3d3;
+  margin-bottom: 4px;
+}
+:root.dark .snippet.standard .header,
+:root.dark #messagesSnippet .header {
+  background: #444444;
+  margin-bottom: 4px;
+}
+.snippet.standard .content,
+#messagesSnippet .content {
+  margin: 0;
+}
+#tankinfo .content {
+    background: #ffffff;
+    border: #d3d3d3 3px solid;
+    border-radius: 12px;
+}
+:root.dark #tankinfo .content {
+    background: #1a1a1a;
+    border: #444444 3px solid;
+}
+.box .tab.bottom,
+.box .tab.right,
+.box .tab.left,
+.box .tab.top,
+.box .tab.topRight {
+    background: #d3d3d3; 
+}
+:root.dark .box .tab.bottom,
+:root.dark .box .tab.right,
+:root.dark .box .tab.left,
+:root.dark .box .tab.top,
+:root.dark .box .tab.topRight {
+    background: #444444 !important; 
+}
+.box.noselect .content {
+    background: #ffffff;
+    border-radius: 12px;
+    border: #d3d3d3 3px solid;
+}
+:root.dark .box.noselect .content {
+    background: #1a1a1a;
+    border: #444444 3px solid;
+}
+:root.dark #settings .content {
+    background: #1a1a1a !important;
+}
+#chat form {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 3px solid var(--jq-borderColorDefault);
+    background: rgb(255 255 255 / 85%);
+    margin-left: 20px;
+    padding: 1px;
+    width: 249px !important;
+}
+#chat form .autocomplete-dropdown{
+    margin-left: 255px !important;
+    margin-top: -1px !important;
+}
+:root.dark #chat form {
+    background: rgb(55 55 55 / 80%);
+}
+#chat.global form {
+    background: #68c5ffab;
+}
+:root.dark #chat.global form {
+    background: #39637dab !important;
+}
+#chat.user form {
+    background: #08ef0aab;
+}
+:root.dark #chat.user form {
+    background: #267d27ab !important;
+}
+#chat:not(.open) form{
+    z-index: -1;
+    position: relative;
+	  animation: moveLeft 0.1s cubic-bezier(0.79, -0.02, 0.32, 0.98) forwards;
+}
+#chat:is(.opening, .open) form {
+    z-index: -1;
+    position: relative;
+    padding-right: 0;
+    animation: moveRight 0.3s cubic-bezier(0.79, -0.02, 0.32, 0.98) forwards;
+}
+#chat:is(.opening, .open) .content, #chat:is(.opening, .open) textarea {
+    width: 230px !important;
+}
+#chat {
+    -webkit-filter: drop-shadow(0 7px 4px rgba(0, 0, 0, .5));
+    filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 1px 2px);
+}
+#chat .body {
+    width: 240px;
+    height: 160px;
+    margin-left: 20px;
+    margin-top: -3px;
+    background: rgb(255 255 255 / 75%);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 3px solid var(--jq-borderColorDefault);
+    padding: 5px;
+}
+:root.dark #chat .body {
+    background: rgb(45 45 45 / 50%);
+}
+#chat .body.dragging {
+    background: rgb(255 255 255 / 55%);
+    border: 3px solid var(--jq-borderColorDefault);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 3px solid var(--jq-borderColorDefault);
+    margin-left: 20px;
+    margin-top: -3px;
+    padding: 5px;
+}
+:root.dark #chat .body.dragging {
+    background: rgb(35 35 35 / 50%);
+}
+#chat.opening textarea, #chat.open textarea {
+    width: 220px !important;
+    margin-left: -20px !important;
+}
+:root.dark #chat textarea {
+    color: #eee ;
+}
+#chat:not(.opening) textarea, #chat:not(.open) textarea {
+    margin-left: -20px !important;
+}
+#chat .handle {
+    width: 7px;
+    height: 7px;
+}
+.forum .bubble {
+    border: #4b4b4b 2px solid;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+:root.dark .forum .bubble {
+    background-color: #1a1a1a;
+    border: #444444 2px solid;
+}
+#contentWrapper {
+    background: #fff;
+}
+:root.dark #contentWrapper {
+    background: #1a1a1a;
+}
+#navigation {
+  height: 60px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+#navigation .tab, {
+    margin: 0px -3px;
+}
+#navigation .tab.selected {
+    z-index: 1;
+    filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 4px);
+    margin: 0 -6px;
+}
+#gameTab img.deselected {
+    filter: drop-shadow(rgba(0, 0, 0, 0.4) 0px 0px 4px);
+    padding: 60px 0px 0px 368px;
+    margin: 0;
+}
+#shopTab img.deselected, 
+#newsTab img.deselected, 
+#forumTab img.deselected {
+    filter: drop-shadow(rgba(0, 0, 0, 0.4) 0px 0px 4px);
+    padding: 60px 0px 0px 128px;
+}
+#gameTab img {
+  width: 0px !important;
+  height: 0px !important;
+  padding: 60px 0px 0px 380px;
+  margin: 0 -3px;
+}
+#shopTab img,
+#newsTab img,
+#forumTab img {
+  width: 0px !important;
+  height: 0px !important;
+  padding: 60px 0px 0px 128px;
+}
+#shopTab img.selected,
+#newsTab img.selected,
+#forumTab img.selected {
+    padding: 60px 0px 0px 140px;
+    width: 0px !important;
+    height: 0px !important;
+    margin: 0px -3px;
+}
+#gameTab img {
+  background-image: image-set(url("https://i.imgur.com/BCDoO2R.png") 2x);
+}
+#gameTab img.deselected {
+  background-image: image-set(url("https://i.imgur.com/VHZoPfG.png") 2x);
+}
+#shopTab img {
+  background-image: image-set(url("https://i.imgur.com/AiRhgTT.png") 2x);
+}
+#shopTab img.deselected {
+  background-image: image-set(url("https://i.imgur.com/mIe3oBK.png") 2x);
+}
+#newsTab img {
+  background-image: image-set(url("https://i.imgur.com/V5flxsL.png") 2x);
+}
+#newsTab img.deselected {
+  background-image: image-set(url("https://i.imgur.com/0Z31tLr.png") 2x);
+}
+#forumTab img {
+  background-image: image-set(url("https://i.imgur.com/GYdGviu.png") 2x);
+}
+#forumTab img.deselected {
+  background-image: image-set(url("https://i.imgur.com/JNZM9vs.png") 2x);
+}

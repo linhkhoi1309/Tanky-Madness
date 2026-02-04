@@ -1,0 +1,7 @@
+{
+    "pack": {
+        "name": "Classic - Light",
+        "description": "TankTrouble Classic is back!"
+    },
+    "features": ["noMazeThemes"]
+}
