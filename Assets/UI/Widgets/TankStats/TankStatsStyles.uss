@@ -1,0 +1,32 @@
+:root {
+}
+
+.frame {
+    background-color: rgba(0, 0, 0, 0.78);
+    margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.name {
+    -unity-text-align: upper-center;
+    font-size: 14px;
+}
+
+.stats-container {
+    flex-direction: row;
+}
+
+.stat-card {
+    flex-grow: 1;
+    flex-basis: 0%;
+    min-width: 128px;
+    min-height: auto;
+}

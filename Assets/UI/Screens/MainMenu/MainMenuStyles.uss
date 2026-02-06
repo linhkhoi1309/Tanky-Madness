@@ -1,0 +1,15 @@
+:root {
+}
+
+.heading {
+    font-size: 28px;
+    color: rgb(200, 200, 200);
+    -unity-font-style: bold;
+    margin-bottom: 32px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    -unity-text-align: upper-center;
+}
+
+

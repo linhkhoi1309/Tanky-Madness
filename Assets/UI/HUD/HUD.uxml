@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="TankStats" src="project://database/Assets/UI/Widgets/TankStats/TankStats.uxml?fileID=9197481963319205126&amp;guid=e72fa3039cedb84449be923e534ca8dc&amp;type=3#TankStats"/>
+    <Style src="project://database/Assets/UI/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=c7338ce5c2185bb46adbb435c4f82314&amp;type=3#HUDStyles"/>
+    <ui:VisualElement name="HUD" class="hud" style="flex-grow: 1; bottom: 0%;">
+        <ui:VisualElement name="TankStatsList" class="tank-stats-list">
+            <ui:Instance template="TankStats"/>
+            <ui:Instance template="TankStats"/>
+            <ui:Instance template="TankStats"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
