@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Base/Base.uss?fileID=7433441132597879392&amp;guid=31c1c1b7b8f0f354eaf2dbcb41dbf7f9&amp;type=3#Base"/>
+    <Style src="project://database/Assets/UI/Screens/PauseMenu/PauseMenuStyles.uss?fileID=7433441132597879392&amp;guid=b4c6e3f11604a26428fa2cc6dfe283a9&amp;type=3#PauseMenuStyles"/>
+    <ui:VisualElement name="pause-panel" class="panel" style="flex-grow: 1;">
+        <ui:Button text="Resume" name="resume-button" class="button"/>
+        <ui:Button text="Settings" name="settings-button" class="button"/>
+        <ui:Button text="Main Menu" name="main-menu-button" class="button"/>
+    </ui:VisualElement>
+</ui:UXML>

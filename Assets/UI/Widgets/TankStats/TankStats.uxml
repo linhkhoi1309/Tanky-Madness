@@ -1,0 +1,20 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Widgets/TankStats/TankStatsStyles.uss?fileID=7433441132597879392&amp;guid=207cf1215e764d34295a3dfadf94a9e9&amp;type=3#TankStatsStyles"/>
+    <Style src="project://database/Assets/UI/Base/Base.uss?fileID=7433441132597879392&amp;guid=31c1c1b7b8f0f354eaf2dbcb41dbf7f9&amp;type=3#Base"/>
+    <ui:VisualElement name="TankStats" style="flex-grow: 1;">
+        <ui:VisualElement name="Avatar" class="frame" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+            <ui:Image source="project://database/Assets/Sprites/Classic%20Light/image/tankiconplaceholderaddons-small.png?fileID=2800000&amp;guid=a96276ea8cdcb194ca0f881516e5482e&amp;type=3#tankiconplaceholderaddons-small" name="Icon" scale-mode="ScaleToFit" style="width: 64px; height: 64px;"/>
+            <ui:Label text="Player" name="Name" class="text name"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Stats" class="stats-container">
+            <ui:VisualElement name="Kills" class="frame stat-card">
+                <ui:Label text="0" name="KillCount" class="text"/>
+                <ui:Label text="Kills" name="" class="text"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Deaths" class="frame stat-card">
+                <ui:Label text="0" name="DeathCount" class="text"/>
+                <ui:Label text="Deaths" name="" class="text"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
