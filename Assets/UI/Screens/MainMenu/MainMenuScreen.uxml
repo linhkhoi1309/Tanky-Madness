@@ -1,0 +1,30 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Base/Base.uss?fileID=7433441132597879392&amp;guid=31c1c1b7b8f0f354eaf2dbcb41dbf7f9&amp;type=3#Base"/>
+    <Style src="project://database/Assets/UI/Screens/MainMenu/MainMenuStyles.uss?fileID=7433441132597879392&amp;guid=9bdd5585639e33d40aad08ae02069f2e&amp;type=3#MainMenuStyles"/>
+    <ui:VisualElement name="" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Classic%20Light/image/tankiconplaceholderaddons-large.png?fileID=2800000&amp;guid=3cd8c65401137e14c8d52a802de47210&amp;type=3#tankiconplaceholderaddons-large&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgb(0, 130, 255); flex-direction: row;">
+        <ui:VisualElement name="main-menu-panel" class="side-menu main-menu-panel panel">
+            <ui:Label text="TANKY MADNESS" name="" class="title heading"/>
+            <ui:Button text="Play" name="play-button" class="button"/>
+            <ui:Button text="Settings" name="settings-button" class="button"/>
+            <ui:Button text="Exit" name="exit-button" class="button"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="game-settings-panel" class="panel translate-transition shown" style="flex-grow: 6; height: 100%; width: 100%; flex-wrap: nowrap;">
+            <ui:Label text="GAMEMODES" name="" class="heading"/>
+            <ui:VisualElement name="" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                <ui:Button text="" name="vs-ai-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px;">
+                    <ui:Image source="project://database/Assets/Sprites/Icons/circuitry.png?fileID=2800000&amp;guid=3af26a8c7c30f09409e988562f2a8dd0&amp;type=3#circuitry" scale-mode="ScaleToFit" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                    <ui:Label text="Vs. AI"/>
+                </ui:Button>
+                <ui:Button text="" name="local-multiplayer-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px; justify-content: center;">
+                    <ui:Image source="project://database/Assets/Sprites/Icons/retro-controller.png?fileID=2800000&amp;guid=147ef2860f9c2b6418a744079478932e&amp;type=3#retro-controller" scale-mode="ScaleToFit" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                    <ui:Label text="Local&#10;Multiplayer"/>
+                </ui:Button>
+                <ui:Button text="" name="online-multiplayer-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px; justify-content: center;">
+                    <ui:Image source="project://database/Assets/Sprites/Icons/earth-asia-oceania.png?fileID=2800000&amp;guid=cc244de2e796e1849ad4e92de089d28f&amp;type=3#earth-asia-oceania" scale-mode="ScaleToFit" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                    <ui:Label text="Online&#10;Multiplayer"/>
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:Button text="Start" name="start-button" class="button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

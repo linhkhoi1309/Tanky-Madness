@@ -1,0 +1,45 @@
+:root {
+    -unity-font-definition: url("project://database/Assets/Fonts/PottaOne-Regular.ttf?fileID=12800000&guid=edd46e655e95d354ba7d0ff2c2e721dd&type=3#PottaOne-Regular");
+}
+
+.text {
+    color: rgb(200, 200, 200);
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0.51);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    color: rgb(200, 200, 200);
+    margin-top: 8px;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: space-evenly;
+}
+
+.panel {
+    align-content: center;
+    padding-top: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+    padding-left: 32px;
+    background-color: rgba(0, 0, 0, 0.78);
+    justify-content: center;
+}
+
+.hidden-right {
+    translate: 100% 0;
+}
+
+.translate-transition {
+    transition-property: translate;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.1306s;
+}
+
+.shown {
+    translate: 0% 0%;
+}
