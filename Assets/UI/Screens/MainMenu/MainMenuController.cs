@@ -1,71 +1,59 @@
-using UnityEngine;
+using System;
 using UnityEngine.UIElements;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : BaseScreenController
 {
-    private VisualElement root;
+    private Button _playButton;
+    private Button _settingsButton;
+    private Button _exitButton;
+    private VisualElement _gameSettingsPanel;
+    private Button _startButton;
 
-    private Button playButton;
-    private Button settingsButton;
-    private Button exitButton;
-    
-    private VisualElement gameSettingsPanel;
-    private Button startButton;
+    private Action _onExitRequested;
 
-    public MainMenuController(VisualElement root)
+    public MainMenuController(VisualElement root, Action onExitRequested) : base(root)
     {
-        this.root = root;
-        InitializeUIElements();
-        RegisterEventHandlers();
-        SetInitialState();
+        _onExitRequested = onExitRequested;
     }
 
-    private void InitializeUIElements()
+    protected override void InitializeUI()
     {
-        playButton = root.Q<Button>("play-button");
-        settingsButton = root.Q<Button>("settings-button");
-        exitButton = root.Q<Button>("exit-button");
+        _playButton = Root.Q<Button>("play-button");
+        _settingsButton = Root.Q<Button>("settings-button");
+        _exitButton = Root.Q<Button>("exit-button");
 
-        gameSettingsPanel = root.Q<VisualElement>("game-settings-panel");
-        startButton = gameSettingsPanel.Q<Button>("start-button");
-    }
-    
-    private void RegisterEventHandlers()
-    {
-        playButton.clicked += PlayButton_clicked;
-        settingsButton.clicked += SettingsButton_clicked;
-        exitButton.clicked += ExitButton_clicked;
-
-        startButton.clicked += StartButton_clicked;
+        _gameSettingsPanel = Root.Q<VisualElement>("game-settings-panel");
+        _startButton = _gameSettingsPanel.Q<Button>("start-button");
     }
 
-    private void SetInitialState()
+    protected override void RegisterEvents()
     {
-        gameSettingsPanel.AddToClassList("hidden-right");
+        _playButton.clicked += OnPlayButtonClicked;
+        _settingsButton.clicked += OnSettingsButtonClicked;
+        _exitButton.clicked += OnExitButtonClicked;
+        _startButton.clicked += OnStartButtonClicked;
     }
 
-    private void PlayButton_clicked()
+    protected override void SetInitialState()
     {
-        ShowGameSettingsPanel();
+        _gameSettingsPanel.AddToClassList("hidden-right");
     }
 
-    private void ShowGameSettingsPanel()
+    public override void Dispose()
     {
-        gameSettingsPanel.RemoveFromClassList("hidden-right");
+        _playButton.clicked -= OnPlayButtonClicked;
+        _settingsButton.clicked -= OnSettingsButtonClicked;
+        _exitButton.clicked -= OnExitButtonClicked;
+        _startButton.clicked -= OnStartButtonClicked;
     }
 
-    private void SettingsButton_clicked()
-    {
-        throw new System.NotImplementedException();
-    }
+    private void OnPlayButtonClicked() => ShowGameSettingsPanel();
 
-    private void ExitButton_clicked()
-    {
-        throw new System.NotImplementedException();
-    }
+    private void ShowGameSettingsPanel() => _gameSettingsPanel.RemoveFromClassList("hidden-right");
 
-    private void StartButton_clicked()
-    {
-        throw new System.NotImplementedException();
-    }
+    private void OnExitButtonClicked() => _onExitRequested?.Invoke();
+
+    private void OnSettingsButtonClicked() => throw new NotImplementedException();
+
+    private void OnStartButtonClicked() => throw new NotImplementedException();
 }
