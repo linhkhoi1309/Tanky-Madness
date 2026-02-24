@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class MazeFactoryTest
 {
-    [RuntimeInitializeOnLoadMethod]
-    private static void Run()
-    {
-        var grid = MazeFactory.Create(
-            10,
-            10,
-            new PrimMazeGenerator(),
-            new[] { new WallRemovalPostProcessor(3, 0.6f) },
-            new System.Random(1306)
-        );
-        PrintMaze(grid);
-    }
+    //[RuntimeInitializeOnLoadMethod]
+    //private static void Run()
+    //{
+    //    var grid = MazeFactory.Create(
+    //        10,
+    //        10,
+    //        new PrimMazeGenerator(),
+    //        new[] { new WallRemovalPostProcessor(3, 0.6f) },
+    //        new System.Random(1306)
+    //    );
+    //    PrintMaze(grid);
+    //}
 
     public static void PrintMaze(MazeGrid grid)
     {

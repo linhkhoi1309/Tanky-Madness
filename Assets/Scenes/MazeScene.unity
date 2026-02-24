@@ -119,68 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &55757037
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2099163218}
-    m_Modifications:
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2227323405306741877, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-      propertyPath: m_Name
-      value: Wall
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
---- !u!4 &369128071 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1032721685246698624, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
-  m_PrefabInstance: {fileID: 55757037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &941447258
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +189,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -265,12 +203,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941447258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 994842567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994842566
 GameObject:
@@ -281,6 +219,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994842567}
+  - component: {fileID: 994842568}
+  - component: {fileID: 994842569}
   m_Layer: 0
   m_Name: MazeRoot
   m_TagString: Untagged
@@ -303,8 +243,39 @@ Transform:
   m_Children:
   - {fileID: 1537219120}
   - {fileID: 2099163218}
+  - {fileID: 941447260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &994842568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994842566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 908d2336a57ddb04183a5f5d8d0d6c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeBuilder
+  floorRenderer: {fileID: 941447259}
+  wallPrefab: {fileID: 2227323405306741877, guid: 83fe2f862640eab498b1ce365113f906, type: 3}
+  wallContainer: {fileID: 2099163217}
+--- !u!114 &994842569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994842566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c43aa5177567248bab7ac9851b4e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeBuilderTest
+  size: {x: 6, y: 6}
+  seed: 1306
+  backgroundColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 0}
 --- !u!1 &1537219117
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,10 +310,10 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537219117}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -470,8 +441,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 369128071}
+  m_Children: []
   m_Father: {fileID: 994842567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -479,4 +449,3 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 994842567}
-  - {fileID: 941447260}
