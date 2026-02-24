@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &941447259
 SpriteRenderer:
   serializedVersion: 2
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2243a0ad578fe87458429c42f4ac6dc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -241,9 +241,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1537219120}
   - {fileID: 2099163218}
   - {fileID: 941447260}
+  - {fileID: 1537219120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &994842568
@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c43aa5177567248bab7ac9851b4e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeBuilderTest
-  size: {x: 6, y: 6}
-  seed: 1306
+  size: {x: 8, y: 8}
+  seed: 220
   backgroundColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 0}
 --- !u!1 &1537219117
 GameObject:
@@ -310,7 +310,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537219117}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 0}

@@ -1,9 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Vector3 = UnityEngine.Vector3;
 
-[RequireComponent(typeof(PlayerInput))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
 
@@ -15,48 +12,11 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Distance to target at which to stop moving"), Min(0f)]
     public float stoppingDistance = 0.2f;
-    private float moveInput;
-    private float rotateInput;
-    private Vector2 mouseScreenPos;
-    private Camera mainCamera;
-    private PlayerInput playerInput;
 
-    void Awake()
-    {
-        mainCamera = Camera.main;
-        playerInput = GetComponent<PlayerInput>();
-    }
-
-    public void OnMove(InputValue value)
-    {
-        moveInput = value.Get<float>();
-    }
-
-    public void OnRotate(InputValue value)
-    {
-        rotateInput = value.Get<float>();
-    }
-
-    public void OnShoot()
-    {
-        Debug.Log("Shoot button pressed by " + gameObject.name);
-    }
-
-    public void OnPoint(InputValue value)
-    {
-        mouseScreenPos = value.Get<Vector2>();
-    }
-
-    void Update()
-    {
-        if (playerInput.currentControlScheme == "Mouse_Scheme") HandleMouseMovement();
-        else HandleKeyboardMovement();
-    }
-
-    void HandleMouseMovement()
+    public void HandleMouseMovement(Vector2 mouseScreenPos)
     {
         // 1. Convert mouse screen pixels to a world position
-        Vector3 worldTarget = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+        Vector3 worldTarget = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
         worldTarget.z = transform.position.z; // Flatten to 2D plane
 
         // 2. Calculate Direction
@@ -82,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleKeyboardMovement()
+    public void HandleKeyboardMovement(float moveInput, float rotateInput)
     {
         transform.Translate(Vector3.up * moveInput * moveSpeed * Time.deltaTime);
         transform.Rotate(Vector3.forward, rotateInput * rotateSpeed * Time.deltaTime);
