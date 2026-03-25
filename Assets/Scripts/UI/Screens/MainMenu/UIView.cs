@@ -23,6 +23,8 @@ public abstract class UIView : IDisposable
         _asset = asset;
 
         parent.Add(_root);
+
+        Initialize();
     }
 
     public virtual void Initialize()

@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 
         _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
 
-        _currentView.Initialize();
+        _currentView.Root.style.visibility = Visibility.Hidden;
 
         while (float.IsNaN(_currentView.Root.layout.width) || _currentView.Root.layout.width <= 0)
         {
@@ -72,6 +72,8 @@ public class UIManager : MonoBehaviour
 
         _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
         var transitionIn = newTrans.In ?? _defaultTransitionIn;
+
+        _currentView.Root.style.visibility = Visibility.Visible;
 
         await transitionIn(_currentView.Root);
     }
