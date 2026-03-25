@@ -31,6 +31,11 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject); // Destroy bullet on collision with player
+            return; // Ignore collision with player
+        }
         var normal = collision.GetContact(0).normal;
         var reflected = Vector2.Reflect(lastVelocity, normal).normalized * speed;
         rb.linearVelocity = reflected;
