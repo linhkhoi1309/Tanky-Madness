@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -42,6 +43,25 @@ public abstract class UIView : IDisposable
         _root.style.position = Position.Absolute;
         _root.style.width = Length.Percent(100);
         _root.style.height = Length.Percent(100);
+    }
+
+    public Task WaitForLayout()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        if (!float.IsNaN(Root.layout.width) && Root.layout.width > 0)
+        {
+            return Task.CompletedTask;
+        }
+
+        void OnGeometryChanged(GeometryChangedEvent evt)
+        {
+            Root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            tcs.SetResult(true);
+        }
+
+        Root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        return tcs.Task;
     }
 
     protected virtual void SetVisualElements() { }

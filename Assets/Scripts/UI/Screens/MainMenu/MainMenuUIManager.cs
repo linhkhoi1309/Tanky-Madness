@@ -11,7 +11,24 @@ public class MainMenuUIManager : UIManager
 
     protected override void BindExternalEvents()
     {
-        HomeEvents.PlayButtonClicked += () => ShowView<GameSetupView>();
+        HomeEvents.PlayButtonClicked += OnHomePlayButtonPressed;
+        GameSetupEvents.BackButtonPressed += OnGameSetupBackButtonPressed;
+    }
+
+    private void OnDisable()
+    {
+        HomeEvents.PlayButtonClicked -= OnHomePlayButtonPressed;
+        GameSetupEvents.BackButtonPressed -= OnGameSetupBackButtonPressed;
+    }
+
+    private void OnHomePlayButtonPressed()
+    {
+        ShowView<GameSetupView>();
+    }
+
+    private void OnGameSetupBackButtonPressed()
+    {
+        ShowView<HomeView>();
     }
 
 }

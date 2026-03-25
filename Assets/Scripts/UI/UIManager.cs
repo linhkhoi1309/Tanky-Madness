@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
     private readonly Dictionary<Type, (UITransition In, UITransition Out)> _transitionRegistry = new();
 
     private readonly UITransition _defaultTransitionIn = UITransitions.SlideRelative(new Vector2(-1f, 0), new Vector2(0, 0), 600);
-    //private readonly UITransition _defaultTransitionIn = UITransitions.Fade(0, 1, 600);
     private readonly UITransition _defaultTransitionOut = UITransitions.SlideRelative(new Vector2(0, 0), new Vector2(-1f, 0), 600);
 
     private void Awake()
@@ -41,12 +40,6 @@ public class UIManager : MonoBehaviour
 
     protected virtual void BindInternalEvents() { }
 
-    protected void BindEvent(Action eventHandler, Action callback)
-    {
-        eventHandler += callback;
-        _eventUnsubscriptions.Add(() => eventHandler -= callback);
-    }
-
     public async void ShowView<T>() where T : UIView
     {
         if (_currentView != null)
@@ -65,10 +58,7 @@ public class UIManager : MonoBehaviour
 
         _currentView.Root.style.visibility = Visibility.Hidden;
 
-        while (float.IsNaN(_currentView.Root.layout.width) || _currentView.Root.layout.width <= 0)
-        {
-            await Task.Yield();
-        }
+        await _currentView.WaitForLayout();
 
         _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
         var transitionIn = newTrans.In ?? _defaultTransitionIn;
