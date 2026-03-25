@@ -2,52 +2,55 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
-public static class UITransitions
+namespace Assets.Scripts.UI
 {
-
-    public static UITransition Fade(float startOpacity, float endOpacity, int durationMs)
+    public static class UITransitions
     {
-        return async (element) =>
+
+        public static UITransition Fade(float startOpacity, float endOpacity, int durationMs)
         {
-            if (startOpacity >= 0 && startOpacity <= 1)
+            return async (element) =>
             {
-                element.style.opacity = startOpacity;
-            }
+                if (startOpacity >= 0 && startOpacity <= 1)
+                {
+                    element.style.opacity = startOpacity;
+                }
 
-            element.experimental.animation.Start(new StyleValues()
-            {
-                opacity = endOpacity
-            }, durationMs);
+                element.experimental.animation.Start(new StyleValues()
+                {
+                    opacity = endOpacity
+                }, durationMs);
 
-            await Task.Delay(durationMs);
-        };
-    }
+                await Task.Delay(durationMs);
+            };
+        }
 
-    public static UITransition SlideRelative(Vector2 startScale, Vector2 endScale, int durationMs)
-    {
-        return async (element) =>
+        public static UITransition SlideRelative(Vector2 startScale, Vector2 endScale, int durationMs)
         {
-            float width = element.resolvedStyle.width;
-            float height = element.resolvedStyle.height;
-
-            float startX = startScale.x * width;
-            float startY = startScale.y * height;
-            float endX = endScale.x * width;
-            float endY = endScale.y * height;
-
-            element.style.left = startX;
-            element.style.top = startY;
-
-            await Task.Yield();
-
-            element.experimental.animation.Start(new StyleValues
+            return async (element) =>
             {
-                left = endX,
-                top = endY,
-            }, durationMs);
+                float width = element.resolvedStyle.width;
+                float height = element.resolvedStyle.height;
 
-            await Task.Delay(durationMs);
-        };
+                float startX = startScale.x * width;
+                float startY = startScale.y * height;
+                float endX = endScale.x * width;
+                float endY = endScale.y * height;
+
+                element.style.left = startX;
+                element.style.top = startY;
+
+                await Task.Yield();
+
+                element.experimental.animation.Start(new StyleValues
+                {
+                    left = endX,
+                    top = endY,
+                }, durationMs);
+
+                await Task.Delay(durationMs);
+            };
+        }
+
     }
-
 }

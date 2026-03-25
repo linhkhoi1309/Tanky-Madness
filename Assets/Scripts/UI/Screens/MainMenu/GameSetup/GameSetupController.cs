@@ -1,31 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSetupController : MonoBehaviour
+namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
 {
-
-    private Gamemode _currentGamemode = Gamemode.Singleplayer;
-
-    void OnEnable()
+    public class GameSetupController : MonoBehaviour
     {
-        GameSetupEvents.GamemodeSelected += OnGamemodeSelected;
-        GameSetupEvents.StartButtonClicked += OnStartButtonClicked;
-    }
 
-    void OnDestroy()
-    {
-        GameSetupEvents.GamemodeSelected -= OnGamemodeSelected;
-        GameSetupEvents.StartButtonClicked -= OnStartButtonClicked;
-    }
+        private Gamemode _currentGamemode = Gamemode.Singleplayer;
 
-    private void OnGamemodeSelected(Gamemode gamemode)
-    {
-        _currentGamemode = gamemode;
-    }
+        void OnEnable()
+        {
+            GameSetupEvents.GamemodeSelected += OnGamemodeSelected;
+            GameSetupEvents.StartButtonClicked += OnStartButtonClicked;
+        }
 
-    private void OnStartButtonClicked()
-    {
-        SceneManager.LoadScene("GameplayScene");
-    }
+        void OnDestroy()
+        {
+            GameSetupEvents.GamemodeSelected -= OnGamemodeSelected;
+            GameSetupEvents.StartButtonClicked -= OnStartButtonClicked;
+        }
 
+        private void OnGamemodeSelected(Gamemode gamemode)
+        {
+            _currentGamemode = gamemode;
+        }
+
+        private void OnStartButtonClicked()
+        {
+            SceneManager.LoadScene("GameplayScene");
+        }
+
+    }
 }

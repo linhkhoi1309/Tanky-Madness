@@ -1,4 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
-public delegate Task UITransition(VisualElement element);
+namespace Assets.Scripts.UI
+{
+    public delegate Task UITransition(VisualElement element);
+}

@@ -1,80 +1,82 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-
-    [SerializeField] private ViewRegistry _viewRegistry;
-
-    private UIDocument _uiDocument;
-    protected UIDocument UiDocument => _uiDocument;
-
-    private UIView _currentView;
-    protected UIView CurrentView => _currentView;
-
-    private readonly List<Action> _eventUnsubscriptions = new();
-
-    private readonly Dictionary<Type, (UITransition In, UITransition Out)> _transitionRegistry = new();
-
-    private readonly UITransition _defaultTransitionIn = UITransitions.SlideRelative(new Vector2(-1f, 0), new Vector2(0, 0), 600);
-    private readonly UITransition _defaultTransitionOut = UITransitions.SlideRelative(new Vector2(0, 0), new Vector2(-1f, 0), 600);
-
-    private void Awake()
+    public class UIManager : MonoBehaviour
     {
-        _uiDocument = GetComponent<UIDocument>();
 
-        RegisterTransitions();
-        SetupViews();
-        BindExternalEvents();
-        BindInternalEvents();
-    }
+        [SerializeField] private ViewRegistry _viewRegistry;
 
-    private void RegisterTransitions() { }
+        private UIDocument _uiDocument;
+        protected UIDocument UiDocument => _uiDocument;
 
-    protected virtual void SetupViews() { }
+        private UIView _currentView;
+        protected UIView CurrentView => _currentView;
 
-    protected virtual void BindExternalEvents() { }
+        private readonly List<Action> _eventUnsubscriptions = new();
 
-    protected virtual void BindInternalEvents() { }
+        private readonly Dictionary<Type, (UITransition In, UITransition Out)> _transitionRegistry = new();
 
-    public async void ShowView<T>() where T : UIView
-    {
-        if (_currentView != null)
+        private readonly UITransition _defaultTransitionIn = UITransitions.SlideRelative(new Vector2(-1f, 0), new Vector2(0, 0), 600);
+        private readonly UITransition _defaultTransitionOut = UITransitions.SlideRelative(new Vector2(0, 0), new Vector2(-1f, 0), 600);
+
+        private void Awake()
         {
-            _transitionRegistry.TryGetValue(_currentView.GetType(), out var oldTrans);
-            var transitionOut = oldTrans.Out ?? _defaultTransitionOut;
+            _uiDocument = GetComponent<UIDocument>();
 
-            await transitionOut(_currentView.Root);
-            _currentView.Dispose();
+            RegisterTransitions();
+            SetupViews();
+            BindExternalEvents();
+            BindInternalEvents();
         }
 
-        VisualTreeAsset currentViewAsset = _viewRegistry.GetViewAsset<T>();
-        if (currentViewAsset == null) return;
+        private void RegisterTransitions() { }
 
-        _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
+        protected virtual void SetupViews() { }
 
-        _currentView.Root.style.visibility = Visibility.Hidden;
+        protected virtual void BindExternalEvents() { }
 
-        await _currentView.WaitForLayout();
+        protected virtual void BindInternalEvents() { }
 
-        _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
-        var transitionIn = newTrans.In ?? _defaultTransitionIn;
-
-        _currentView.Root.style.visibility = Visibility.Visible;
-
-        await transitionIn(_currentView.Root);
-    }
-
-    private void OnDestroy()
-    {
-        foreach (var unsubscribe in _eventUnsubscriptions)
+        public async void ShowView<T>() where T : UIView
         {
-            unsubscribe?.Invoke();
-        }
-        _eventUnsubscriptions.Clear();
-    }
+            if (_currentView != null)
+            {
+                _transitionRegistry.TryGetValue(_currentView.GetType(), out var oldTrans);
+                var transitionOut = oldTrans.Out ?? _defaultTransitionOut;
 
+                await transitionOut(_currentView.Root);
+                _currentView.Dispose();
+            }
+
+            VisualTreeAsset currentViewAsset = _viewRegistry.GetViewAsset<T>();
+            if (currentViewAsset == null) return;
+
+            _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
+
+            _currentView.Root.style.visibility = Visibility.Hidden;
+
+            await _currentView.WaitForLayout();
+
+            _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
+            var transitionIn = newTrans.In ?? _defaultTransitionIn;
+
+            _currentView.Root.style.visibility = Visibility.Visible;
+
+            await transitionIn(_currentView.Root);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var unsubscribe in _eventUnsubscriptions)
+            {
+                unsubscribe?.Invoke();
+            }
+            _eventUnsubscriptions.Clear();
+        }
+
+    }
 }

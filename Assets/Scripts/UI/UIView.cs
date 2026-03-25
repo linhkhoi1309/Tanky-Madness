@@ -1,104 +1,106 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class UIView : IDisposable
+namespace Assets.Scripts.UI
 {
-
-    private readonly VisualElement _root;
-    public VisualElement Root => _root;
-
-    private readonly VisualTreeAsset _asset;
-
-    private readonly List<Action> _unsubscriptionActions = new();
-
-    public UIView(VisualElement parent, VisualTreeAsset asset)
+    public abstract class UIView : IDisposable
     {
-        _root = new()
+
+        private readonly VisualElement _root;
+        public VisualElement Root => _root;
+
+        private readonly VisualTreeAsset _asset;
+
+        private readonly List<Action> _unsubscriptionActions = new();
+
+        public UIView(VisualElement parent, VisualTreeAsset asset)
         {
-            name = GetType().Name
-        };
+            _root = new()
+            {
+                name = GetType().Name
+            };
 
-        _asset = asset;
+            _asset = asset;
 
-        parent.Add(_root);
+            parent.Add(_root);
 
-        Initialize();
-    }
-
-    public virtual void Initialize()
-    {
-        if (_asset != null) _asset.CloneTree(_root);
-
-        ApplyLayout();
-        SetVisualElements();
-        BindExternalEvents();
-        BindInternalEvents();
-    }
-
-    protected virtual void ApplyLayout()
-    {
-        _root.style.position = Position.Absolute;
-        _root.style.width = Length.Percent(100);
-        _root.style.height = Length.Percent(100);
-    }
-
-    public Task WaitForLayout()
-    {
-        var tcs = new TaskCompletionSource<bool>();
-
-        if (!float.IsNaN(Root.layout.width) && Root.layout.width > 0)
-        {
-            return Task.CompletedTask;
+            Initialize();
         }
 
-        void OnGeometryChanged(GeometryChangedEvent evt)
+        public virtual void Initialize()
         {
-            Root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-            tcs.SetResult(true);
+            if (_asset != null) _asset.CloneTree(_root);
+
+            ApplyLayout();
+            SetVisualElements();
+            BindExternalEvents();
+            BindInternalEvents();
         }
 
-        Root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-        return tcs.Task;
-    }
-
-    protected virtual void SetVisualElements() { }
-
-    protected virtual void BindExternalEvents() { }
-
-    protected virtual void BindInternalEvents() { }
-
-    protected void BindClick(Button button, Action callback)
-    {
-        if (button == null) return;
-
-        button.clicked += callback;
-
-        _unsubscriptionActions.Add(() => button.clicked -= callback);
-    }
-
-    protected void BindChange<T>(INotifyValueChanged<T> field, EventCallback<ChangeEvent<T>> callback)
-    {
-        if (field == null) return;
-        field.RegisterValueChangedCallback(callback);
-        _unsubscriptionActions.Add(() => field.UnregisterValueChangedCallback(callback));
-    }
-
-    public void Dispose()
-    {
-        foreach (var unsubscribe in _unsubscriptionActions)
+        protected virtual void ApplyLayout()
         {
-            unsubscribe?.Invoke();
+            _root.style.position = Position.Absolute;
+            _root.style.width = Length.Percent(100);
+            _root.style.height = Length.Percent(100);
         }
-        _unsubscriptionActions.Clear();
 
-        _root?.RemoveFromHierarchy();
+        public Task WaitForLayout()
+        {
+            var tcs = new TaskCompletionSource<bool>();
 
-        OnDispose();
+            if (!float.IsNaN(Root.layout.width) && Root.layout.width > 0)
+            {
+                return Task.CompletedTask;
+            }
+
+            void OnGeometryChanged(GeometryChangedEvent evt)
+            {
+                Root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+                tcs.SetResult(true);
+            }
+
+            Root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            return tcs.Task;
+        }
+
+        protected virtual void SetVisualElements() { }
+
+        protected virtual void BindExternalEvents() { }
+
+        protected virtual void BindInternalEvents() { }
+
+        protected void BindClick(Button button, Action callback)
+        {
+            if (button == null) return;
+
+            button.clicked += callback;
+
+            _unsubscriptionActions.Add(() => button.clicked -= callback);
+        }
+
+        protected void BindChange<T>(INotifyValueChanged<T> field, EventCallback<ChangeEvent<T>> callback)
+        {
+            if (field == null) return;
+            field.RegisterValueChangedCallback(callback);
+            _unsubscriptionActions.Add(() => field.UnregisterValueChangedCallback(callback));
+        }
+
+        public void Dispose()
+        {
+            foreach (var unsubscribe in _unsubscriptionActions)
+            {
+                unsubscribe?.Invoke();
+            }
+            _unsubscriptionActions.Clear();
+
+            _root?.RemoveFromHierarchy();
+
+            OnDispose();
+        }
+
+        protected virtual void OnDispose() { }
+
     }
-
-    protected virtual void OnDispose() { }
-
 }

@@ -1,34 +1,37 @@
-using UnityEngine;
-using UnityEngine.UIElements;
+using Assets.Scripts.UI.Screens.MainMenu.GameSetup;
+using Assets.Scripts.UI.Screens.MainMenu.Home;
 
-public class MainMenuUIManager : UIManager
+namespace Assets.Scripts.UI.Screens.MainMenu
 {
-
-    override protected void SetupViews()
+    public class MainMenuUIManager : UIManager
     {
-        ShowView<HomeView>();
-    }
 
-    protected override void BindExternalEvents()
-    {
-        HomeEvents.PlayButtonClicked += OnHomePlayButtonPressed;
-        GameSetupEvents.BackButtonPressed += OnGameSetupBackButtonPressed;
-    }
+        override protected void SetupViews()
+        {
+            ShowView<HomeView>();
+        }
 
-    private void OnDisable()
-    {
-        HomeEvents.PlayButtonClicked -= OnHomePlayButtonPressed;
-        GameSetupEvents.BackButtonPressed -= OnGameSetupBackButtonPressed;
-    }
+        protected override void BindExternalEvents()
+        {
+            HomeEvents.PlayButtonClicked += OnHomePlayButtonPressed;
+            GameSetupEvents.BackButtonPressed += OnGameSetupBackButtonPressed;
+        }
 
-    private void OnHomePlayButtonPressed()
-    {
-        ShowView<GameSetupView>();
-    }
+        private void OnDisable()
+        {
+            HomeEvents.PlayButtonClicked -= OnHomePlayButtonPressed;
+            GameSetupEvents.BackButtonPressed -= OnGameSetupBackButtonPressed;
+        }
 
-    private void OnGameSetupBackButtonPressed()
-    {
-        ShowView<HomeView>();
-    }
+        private void OnHomePlayButtonPressed()
+        {
+            ShowView<GameSetupView>();
+        }
 
+        private void OnGameSetupBackButtonPressed()
+        {
+            ShowView<HomeView>();
+        }
+
+    }
 }

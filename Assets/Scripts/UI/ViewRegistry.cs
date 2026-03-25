@@ -1,31 +1,36 @@
+using Assets.Scripts.UI.Screens.MainMenu.GameSetup;
+using Assets.Scripts.UI.Screens.MainMenu.Home;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "ViewRegistry", menuName = "UI/ViewRegistry")]
-public class ViewRegistry : ScriptableObject
+namespace Assets.Scripts.UI
 {
-
-    public VisualTreeAsset homeViewAsset;
-    public VisualTreeAsset gameSetupViewAsset;
-    public VisualTreeAsset hudViewAsset;
-    public VisualTreeAsset pauseViewAsset;
-
-    public VisualTreeAsset GetViewAsset<T>() where T : UIView
+    [CreateAssetMenu(fileName = "ViewRegistry", menuName = "UI/ViewRegistry")]
+    public class ViewRegistry : ScriptableObject
     {
-        switch (typeof(T).Name)
-        {
-            case nameof(HomeView):
-                return homeViewAsset;
-            case nameof(GameSetupView):
-                return gameSetupViewAsset;
-            //case nameof(HUDView):
-            //    return hudViewAsset;
-            //case nameof(PauseView):
-            //    return pauseViewAsset;
-            default:
-                Debug.LogError($"No view asset found for type {typeof(T).Name}");
-                return null;
-        }
-    }
 
+        public VisualTreeAsset homeViewAsset;
+        public VisualTreeAsset gameSetupViewAsset;
+        public VisualTreeAsset hudViewAsset;
+        public VisualTreeAsset pauseViewAsset;
+
+        public VisualTreeAsset GetViewAsset<T>() where T : UIView
+        {
+            switch (typeof(T).Name)
+            {
+                case nameof(HomeView):
+                    return homeViewAsset;
+                case nameof(GameSetupView):
+                    return gameSetupViewAsset;
+                //case nameof(HUDView):
+                //    return hudViewAsset;
+                //case nameof(PauseView):
+                //    return pauseViewAsset;
+                default:
+                    Debug.LogError($"No view asset found for type {typeof(T).Name}");
+                    return null;
+            }
+        }
+
+    }
 }

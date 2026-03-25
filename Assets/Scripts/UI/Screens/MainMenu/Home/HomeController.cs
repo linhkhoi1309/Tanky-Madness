@@ -1,24 +1,26 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class HomeController : MonoBehaviour
+namespace Assets.Scripts.UI.Screens.MainMenu.Home
 {
-
-    private Gamemode _currentGamemode = Gamemode.Singleplayer;
-
-    void OnEnable()
+    public class HomeController : MonoBehaviour
     {
-        HomeEvents.ExitButtonClicked += OnExitButtonClicked;
-    }
 
-    void OnDestroy()
-    {
-        HomeEvents.ExitButtonClicked -= OnExitButtonClicked;
-    }
+        private Gamemode _currentGamemode = Gamemode.Singleplayer;
 
-    private void OnExitButtonClicked()
-    {
-        Application.Quit();
-    }
+        void OnEnable()
+        {
+            HomeEvents.ExitButtonClicked += OnExitButtonClicked;
+        }
 
+        void OnDestroy()
+        {
+            HomeEvents.ExitButtonClicked -= OnExitButtonClicked;
+        }
+
+        private void OnExitButtonClicked()
+        {
+            Application.Quit();
+        }
+
+    }
 }
