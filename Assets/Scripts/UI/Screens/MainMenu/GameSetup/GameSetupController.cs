@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
 
         private void OnStartButtonClicked()
         {
-            SceneManager.LoadScene("GameplayScene");
+            SceneController.Instance.Load("GameplayScene");
         }
 
     }
