@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c93dc90598dfca4683688df43d832ba, type: 3}
+  m_Name: ViewRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::ViewRegistry
+  homeViewAsset: {fileID: 9197481963319205126, guid: 7cca31557252f044db8dc7b5c1f36663, type: 3}
+  gameSetupViewAsset: {fileID: 9197481963319205126, guid: 7ae0ce54dd5f419488f0dad2a1e1d985, type: 3}
+  hudViewAsset: {fileID: 0}
+  pauseViewAsset: {fileID: 0}

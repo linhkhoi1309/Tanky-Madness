@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Sidebar" src="project://database/Assets/UI/Screens/MainMenu/Sidebar.uxml?fileID=9197481963319205126&amp;guid=9b5aebe39f003134984571e266177287&amp;type=3#Sidebar"/>
+    <Style src="project://database/Assets/UI/Base/Base.uss?fileID=7433441132597879392&amp;guid=31c1c1b7b8f0f354eaf2dbcb41dbf7f9&amp;type=3#Base"/>
+    <ui:Instance template="Sidebar" class="sticky-left"/>
+</ui:UXML>
