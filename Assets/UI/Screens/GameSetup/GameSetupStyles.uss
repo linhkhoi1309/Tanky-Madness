@@ -1,0 +1,11 @@
+:root {
+}
+
+.heading {
+    font-size: 32px;
+    -unity-text-align: upper-center;
+}
+
+.gamemode-container {
+    align-items: center;
+}
