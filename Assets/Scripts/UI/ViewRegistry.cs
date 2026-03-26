@@ -1,3 +1,5 @@
+using Assets.Scripts.UI.Screens.Gameplay.HUD;
+using Assets.Scripts.UI.Screens.Gameplay.PauseMenu;
 using Assets.Scripts.UI.Screens.MainMenu.GameSetup;
 using Assets.Scripts.UI.Screens.MainMenu.Home;
 using UnityEngine;
@@ -22,10 +24,10 @@ namespace Assets.Scripts.UI
                     return homeViewAsset;
                 case nameof(GameSetupView):
                     return gameSetupViewAsset;
-                //case nameof(HUDView):
-                //    return hudViewAsset;
-                //case nameof(PauseView):
-                //    return pauseViewAsset;
+                case nameof(HUDView):
+                    return hudViewAsset;
+                case nameof(PauseMenuView):
+                    return pauseViewAsset;
                 default:
                     Debug.LogError($"No view asset found for type {typeof(T).Name}");
                     return null;

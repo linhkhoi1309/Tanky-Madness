@@ -13,13 +13,13 @@ namespace Assets.Scripts.UI.Screens.MainMenu
 
         protected override void BindExternalEvents()
         {
-            HomeEvents.PlayButtonClicked += OnHomePlayButtonPressed;
+            HomeEvents.PlayButtonPressed += OnHomePlayButtonPressed;
             GameSetupEvents.BackButtonPressed += OnGameSetupBackButtonPressed;
         }
 
         private void OnDisable()
         {
-            HomeEvents.PlayButtonClicked -= OnHomePlayButtonPressed;
+            HomeEvents.PlayButtonPressed -= OnHomePlayButtonPressed;
             GameSetupEvents.BackButtonPressed -= OnGameSetupBackButtonPressed;
         }
 

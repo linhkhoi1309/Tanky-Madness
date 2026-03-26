@@ -35,8 +35,8 @@ namespace Assets.Scripts.UI
 
             ApplyLayout();
             SetVisualElements();
-            BindExternalEvents();
             BindInternalEvents();
+            BindExternalEvents();
         }
 
         protected virtual void ApplyLayout()
@@ -67,9 +67,9 @@ namespace Assets.Scripts.UI
 
         protected virtual void SetVisualElements() { }
 
-        protected virtual void BindExternalEvents() { }
-
         protected virtual void BindInternalEvents() { }
+
+        protected virtual void BindExternalEvents() { }
 
         protected void BindClick(Button button, Action callback)
         {

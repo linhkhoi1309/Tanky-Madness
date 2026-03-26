@@ -9,15 +9,15 @@ namespace Assets.Scripts.UI.Screens.MainMenu.Home
 
         void OnEnable()
         {
-            HomeEvents.ExitButtonClicked += OnExitButtonClicked;
+            HomeEvents.ExitButtonPressed += OnExitButtonPressed;
         }
 
         void OnDestroy()
         {
-            HomeEvents.ExitButtonClicked -= OnExitButtonClicked;
+            HomeEvents.ExitButtonPressed -= OnExitButtonPressed;
         }
 
-        private void OnExitButtonClicked()
+        private void OnExitButtonPressed()
         {
             Application.Quit();
         }

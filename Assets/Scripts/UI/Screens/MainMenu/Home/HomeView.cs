@@ -5,9 +5,9 @@ namespace Assets.Scripts.UI.Screens.MainMenu.Home
     public class HomeView : UIView
     {
 
-        private string _playButtonId = "play-button";
-        private string _settingsButtonId = "settings-button";
-        private string _exitButtonId = "exit-button";
+        private const string _playButtonId = "play-button";
+        private const string _settingsButtonId = "settings-button";
+        private const string _exitButtonId = "exit-button";
 
         private Button _playButton;
         private Button _settingsButton;
@@ -24,9 +24,9 @@ namespace Assets.Scripts.UI.Screens.MainMenu.Home
 
         protected override void BindInternalEvents()
         {
-            BindClick(_playButton, () => HomeEvents.PlayButtonClicked?.Invoke());
-            BindClick(_settingsButton, () => HomeEvents.SettingsButtonClicked?.Invoke());
-            BindClick(_exitButton, () => HomeEvents.ExitButtonClicked?.Invoke());
+            BindClick(_playButton, () => HomeEvents.PlayButtonPressed?.Invoke());
+            BindClick(_settingsButton, () => HomeEvents.SettingsButtonPressed?.Invoke());
+            BindClick(_exitButton, () => HomeEvents.ExitButtonPressed?.Invoke());
         }
 
     }

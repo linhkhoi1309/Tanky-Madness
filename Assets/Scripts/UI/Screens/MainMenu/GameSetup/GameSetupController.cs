@@ -11,13 +11,13 @@ namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
         void OnEnable()
         {
             GameSetupEvents.GamemodeSelected += OnGamemodeSelected;
-            GameSetupEvents.StartButtonClicked += OnStartButtonClicked;
+            GameSetupEvents.StartButtonPressed += OnStartButtonPressed;
         }
 
         void OnDestroy()
         {
             GameSetupEvents.GamemodeSelected -= OnGamemodeSelected;
-            GameSetupEvents.StartButtonClicked -= OnStartButtonClicked;
+            GameSetupEvents.StartButtonPressed -= OnStartButtonPressed;
         }
 
         private void OnGamemodeSelected(Gamemode gamemode)
@@ -25,9 +25,9 @@ namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
             _currentGamemode = gamemode;
         }
 
-        private void OnStartButtonClicked()
+        private void OnStartButtonPressed()
         {
-            SceneController.Instance.Load("GameplayScene");
+            SceneController.Instance.Load("GameplayScene", "GameplayUIScene");
         }
 
     }

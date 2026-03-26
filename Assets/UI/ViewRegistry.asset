@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ViewRegistry
   homeViewAsset: {fileID: 9197481963319205126, guid: 7cca31557252f044db8dc7b5c1f36663, type: 3}
   gameSetupViewAsset: {fileID: 9197481963319205126, guid: 7ae0ce54dd5f419488f0dad2a1e1d985, type: 3}
-  hudViewAsset: {fileID: 0}
-  pauseViewAsset: {fileID: 0}
+  hudViewAsset: {fileID: 9197481963319205126, guid: 78ce8a6be216d7340ba3386549b602ed, type: 3}
+  pauseViewAsset: {fileID: 9197481963319205126, guid: c3ff019b28a619744ae80e74103e29f2, type: 3}

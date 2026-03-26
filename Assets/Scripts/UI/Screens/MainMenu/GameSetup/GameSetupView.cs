@@ -32,7 +32,7 @@ namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
         {
             BindChange<ToggleButtonGroupState>(_gamemodeToggleGroup, OnGamemodeToggleGroupSelectionChanged);
             BindClick(_backButton, () => GameSetupEvents.BackButtonPressed?.Invoke());
-            BindClick(_startButton, () => GameSetupEvents.StartButtonClicked?.Invoke());
+            BindClick(_startButton, () => GameSetupEvents.StartButtonPressed?.Invoke());
         }
 
         private void OnGamemodeToggleGroupSelectionChanged(ChangeEvent<ToggleButtonGroupState> evt)

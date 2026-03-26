@@ -5,27 +5,37 @@ using UnityEngine.UIElements;
 
 namespace Assets.Scripts.UI
 {
+    [RequireComponent(typeof(UIDocument))]
     public class UIManager : MonoBehaviour
     {
 
         [SerializeField] private ViewRegistry _viewRegistry;
+        [SerializeField] private TransitionSettings _defaultTransitionInSettings;
+        [SerializeField] private TransitionSettings _defaultTransitionOutSettings;
 
         private UIDocument _uiDocument;
         protected UIDocument UiDocument => _uiDocument;
 
         private UIView _currentView;
         protected UIView CurrentView => _currentView;
+        private bool _isTransitioning;
 
         private readonly List<Action> _eventUnsubscriptions = new();
 
         private readonly Dictionary<Type, (UITransition In, UITransition Out)> _transitionRegistry = new();
 
-        private readonly UITransition _defaultTransitionIn = UITransitions.SlideRelative(new Vector2(-1f, 0), new Vector2(0, 0), 600);
-        private readonly UITransition _defaultTransitionOut = UITransitions.SlideRelative(new Vector2(0, 0), new Vector2(-1f, 0), 600);
+        public UITransition _defaultTransitionIn { get; private set; }
+        public UITransition _defaultTransitionOut { get; private set; }
+
+        //private readonly UITransition _defaultTransitionIn = UITransitions.SlideRelative(new Vector2(-1f, 0), new Vector2(0, 0), 600);
+        //private readonly UITransition _defaultTransitionOut = UITransitions.SlideRelative(new Vector2(0, 0), new Vector2(-1f, 0), 600);
 
         private void Awake()
         {
             _uiDocument = GetComponent<UIDocument>();
+
+            _defaultTransitionIn = _defaultTransitionInSettings.Create();
+            _defaultTransitionOut = _defaultTransitionOutSettings.Create();
 
             RegisterTransitions();
             SetupViews();
@@ -43,30 +53,40 @@ namespace Assets.Scripts.UI
 
         public async void ShowView<T>() where T : UIView
         {
-            if (_currentView != null)
+            if (_isTransitioning) return;
+            _isTransitioning = true;
+
+            try
             {
-                _transitionRegistry.TryGetValue(_currentView.GetType(), out var oldTrans);
-                var transitionOut = oldTrans.Out ?? _defaultTransitionOut;
+                if (_currentView != null)
+                {
+                    _transitionRegistry.TryGetValue(_currentView.GetType(), out var oldTrans);
+                    var transitionOut = oldTrans.Out ?? _defaultTransitionOut;
 
-                await transitionOut(_currentView.Root);
-                _currentView.Dispose();
+                    await transitionOut(_currentView.Root);
+                    _currentView.Dispose();
+                }
+
+                VisualTreeAsset currentViewAsset = _viewRegistry.GetViewAsset<T>();
+                if (currentViewAsset == null) return;
+
+                _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
+
+                _currentView.Root.style.visibility = Visibility.Hidden;
+
+                await _currentView.WaitForLayout();
+
+                _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
+                var transitionIn = newTrans.In ?? _defaultTransitionIn;
+
+                _currentView.Root.style.visibility = Visibility.Visible;
+
+                await transitionIn(_currentView.Root);
             }
-
-            VisualTreeAsset currentViewAsset = _viewRegistry.GetViewAsset<T>();
-            if (currentViewAsset == null) return;
-
-            _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
-
-            _currentView.Root.style.visibility = Visibility.Hidden;
-
-            await _currentView.WaitForLayout();
-
-            _transitionRegistry.TryGetValue(typeof(T), out var newTrans);
-            var transitionIn = newTrans.In ?? _defaultTransitionIn;
-
-            _currentView.Root.style.visibility = Visibility.Visible;
-
-            await transitionIn(_currentView.Root);
+            finally
+            {
+                _isTransitioning = false;
+            }
         }
 
         private void OnDestroy()
