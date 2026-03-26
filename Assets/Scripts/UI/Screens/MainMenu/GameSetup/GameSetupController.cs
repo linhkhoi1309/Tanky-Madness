@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.Screens.MainMenu.GameSetup
 
         private void OnStartButtonPressed()
         {
-            SceneController.Instance.Load("GameplayScene", "GameplayUIScene");
+            SceneController.Instance.Load("GameplayScene", "GameplayUIScene", "MazeScene");
         }
 
     }

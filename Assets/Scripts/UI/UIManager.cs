@@ -54,6 +54,14 @@ namespace Assets.Scripts.UI
         public async void ShowView<T>() where T : UIView
         {
             if (_isTransitioning) return;
+
+            VisualTreeAsset nextViewAsset = _viewRegistry.GetViewAsset<T>();
+            if (nextViewAsset == null)
+            {
+                Debug.LogError($"[UIManager] View Asset for {typeof(T).Name} is missing!");
+                return;
+            }
+
             _isTransitioning = true;
 
             try
@@ -65,13 +73,10 @@ namespace Assets.Scripts.UI
 
                     await transitionOut(_currentView.Root);
                     _currentView.Dispose();
+                    _currentView = null;
                 }
 
-                VisualTreeAsset currentViewAsset = _viewRegistry.GetViewAsset<T>();
-                if (currentViewAsset == null) return;
-
-                _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, currentViewAsset);
-
+                _currentView = (T)Activator.CreateInstance(typeof(T), _uiDocument.rootVisualElement, nextViewAsset);
                 _currentView.Root.style.visibility = Visibility.Hidden;
 
                 await _currentView.WaitForLayout();
@@ -80,8 +85,11 @@ namespace Assets.Scripts.UI
                 var transitionIn = newTrans.In ?? _defaultTransitionIn;
 
                 _currentView.Root.style.visibility = Visibility.Visible;
-
                 await transitionIn(_currentView.Root);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
             }
             finally
             {

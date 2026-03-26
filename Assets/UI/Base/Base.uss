@@ -78,11 +78,21 @@
     display: none;
 }
 
+.p-sm {
+}
+
 .p-md {
     padding-top: 32px;
     padding-right: 32px;
     padding-bottom: 32px;
     padding-left: 32px;
+}
+
+.rounded-sm {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .rounded-md {

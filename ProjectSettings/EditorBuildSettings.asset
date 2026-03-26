@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameplayUIScene.unity
     guid: a1b9fc326852bad48af2788f50687698
+  - enabled: 1
+    path: Assets/Scenes/MazeScene.unity
+    guid: ebe8efe1873c2464bbf4499760803dae
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
