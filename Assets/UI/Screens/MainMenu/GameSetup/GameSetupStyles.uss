@@ -1,0 +1,10 @@
+:root {
+}
+
+.toggle-group > .unity-label {
+    display: none;
+}
+
+.toggle-group > .unity-button-group {
+    justify-content: center;
+}

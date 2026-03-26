@@ -1,0 +1,29 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Base/Base.uss?fileID=7433441132597879392&amp;guid=31c1c1b7b8f0f354eaf2dbcb41dbf7f9&amp;type=3#Base"/>
+    <Style src="project://database/Assets/UI/Screens/MainMenu/GameSetupStyles.uss?fileID=7433441132597879392&amp;guid=feabb6b9bbffaa645a37b8f0a69666cd&amp;type=3#GameSetupStyles"/>
+    <ui:VisualElement name="game-setup-view" class="p-md" style="flex-grow: 1;">
+        <ui:VisualElement name="panel" class="panel rounded-md" style="flex-grow: 6; height: 100%; width: 100%; flex-wrap: nowrap;">
+            <ui:VisualElement name="header" class="flex-row">
+                <ui:Button name="back-button" class="transparent no-border icon-button" style="background-image: url(&quot;project://database/Assets/Sprites/Icons/chevron-left.png?fileID=2800000&amp;guid=70dda4687cfb6bd4082355f960827312&amp;type=3#chevron-left&quot;); -unity-background-scale-mode: scale-and-crop; height: 32px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="" class="content-justified" style="flex-grow: 1;">
+                <ui:Label text="GAMEMODES" name="" class="text text-big text-centered"/>
+                <ui:ToggleButtonGroup label="Toggle Button Group" name="gamemode-toggle-group" class="button-group grow items-centered toggle-group">
+                    <ui:Button text="" name="singleplayer-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px;">
+                        <ui:Image source="project://database/Assets/Sprites/Icons/circuitry.png?fileID=2800000&amp;guid=3af26a8c7c30f09409e988562f2a8dd0&amp;type=3#circuitry" scale-mode="ScaleToFit" tint-color="rgb(130, 130, 130)" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                        <ui:Label text="Singleplayer"/>
+                    </ui:Button>
+                    <ui:Button text="" name="local-multiplayer-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px; justify-content: center;">
+                        <ui:Image source="project://database/Assets/Sprites/Icons/retro-controller.png?fileID=2800000&amp;guid=147ef2860f9c2b6418a744079478932e&amp;type=3#retro-controller" scale-mode="ScaleToFit" tint-color="rgb(130, 130, 130)" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                        <ui:Label text="Local&#10;Multiplayer"/>
+                    </ui:Button>
+                    <ui:Button text="" name="online-multiplayer-button" class="button" style="align-items: center; flex-basis: auto; flex-grow: 0; margin-right: 8px; margin-left: 8px; width: 160px; height: 160px; justify-content: center;">
+                        <ui:Image source="project://database/Assets/Sprites/Icons/earth-asia-oceania.png?fileID=2800000&amp;guid=cc244de2e796e1849ad4e92de089d28f&amp;type=3#earth-asia-oceania" scale-mode="ScaleToFit" tint-color="rgb(130, 130, 130)" style="width: 64px; height: 64px; aspect-ratio: 1;"/>
+                        <ui:Label text="Online&#10;Multiplayer"/>
+                    </ui:Button>
+                </ui:ToggleButtonGroup>
+            </ui:VisualElement>
+            <ui:Button text="Start" name="start-button" class="button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

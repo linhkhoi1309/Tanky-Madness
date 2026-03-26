@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5c93dc90598dfca4683688df43d832ba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - homeViewAsset: {instanceID: 0}
+  - gameSetupViewAsset: {instanceID: 0}
+  - hudViewAsset: {instanceID: 0}
+  - pauseViewAsset: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
