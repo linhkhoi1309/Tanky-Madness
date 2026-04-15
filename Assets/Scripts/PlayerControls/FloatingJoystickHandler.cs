@@ -1,0 +1,79 @@
+using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
+using ETouch = UnityEngine.InputSystem.EnhancedTouch;
+
+public class FloatingJoystickHandler : MonoBehaviour
+{
+
+    [SerializeField]
+    private FloatingJoystick floatingJoystick;
+
+    private ETouch.Finger activeFinger;
+    private Vector2 dragDistance;
+
+    private void OnEnable()
+    {
+        ETouch.EnhancedTouchSupport.Enable();
+        ETouch.Touch.onFingerDown += OnFingerDown;
+        ETouch.Touch.onFingerMove += OnFingerMove;
+        ETouch.Touch.onFingerUp += OnFingerUp;
+    }
+
+    private void OnFingerDown(Finger finger)
+    {
+        Vector2 fingerPosition = finger.screenPosition;
+        if (activeFinger != null || fingerPosition.x > Screen.width * 0.5f) return;
+
+        activeFinger = finger;
+        dragDistance = Vector2.zero;
+        floatingJoystick.gameObject.SetActive(true);
+        floatingJoystick.RectTransform.anchoredPosition = ClampStartPosition(fingerPosition);
+    }
+
+    private Vector2 ClampStartPosition(Vector2 position)
+    {
+        float clampedX = Mathf.Clamp(position.x, floatingJoystick.Radius, Screen.width - floatingJoystick.Radius);
+        float clampedY = Mathf.Clamp(position.y, floatingJoystick.Radius, Screen.height - floatingJoystick.Radius);
+        return new Vector2(clampedX, clampedY);
+    }
+
+    private void OnFingerMove(Finger finger)
+    {
+        if (finger != activeFinger) return;
+
+        Vector2 knobPosition;
+        float joystickRadius = floatingJoystick.Radius;
+        ETouch.Touch touch = finger.currentTouch;
+
+        if (Vector2.Distance(touch.screenPosition, floatingJoystick.RectTransform.anchoredPosition) > joystickRadius)
+        {
+            Vector2 direction = (touch.screenPosition - floatingJoystick.RectTransform.anchoredPosition).normalized;
+            knobPosition = direction * joystickRadius;
+        }
+        else
+        {
+            knobPosition = touch.screenPosition - floatingJoystick.RectTransform.anchoredPosition;
+        }
+
+        floatingJoystick.Knob.anchoredPosition = knobPosition;
+        dragDistance = knobPosition / joystickRadius;
+    }
+
+    private void OnFingerUp(Finger finger)
+    {
+        if (finger != activeFinger) return;
+
+        activeFinger = null;
+        floatingJoystick.Knob.anchoredPosition = Vector2.zero;
+        floatingJoystick.gameObject.SetActive(false);
+        dragDistance = Vector2.zero;
+    }
+
+    private void OnDisable()
+    {
+        ETouch.Touch.onFingerDown -= OnFingerDown;
+        ETouch.Touch.onFingerMove -= OnFingerMove;
+        ETouch.Touch.onFingerUp -= OnFingerUp;
+        ETouch.EnhancedTouchSupport.Disable();
+    }
+}
