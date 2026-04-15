@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingJoystickHandler
   floatingJoystick: {fileID: 1479906518}
+  joystickSide: 0
+  _controlPath: <Gamepad>/leftStick
 --- !u!4 &542730664
 Transform:
   m_ObjectHideFlags: 0

@@ -1,17 +1,36 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.InputSystem.OnScreen;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class FloatingJoystickHandler : MonoBehaviour
+enum ScreenSide
+{
+    Left,
+    Right
+}
+
+public class FloatingJoystickHandler : OnScreenControl
 {
 
     [SerializeField]
     private FloatingJoystick floatingJoystick;
 
-    private ETouch.Finger activeFinger;
+    [SerializeField]
+    private ScreenSide joystickSide;
 
-    private Gamepad virtualGamepad;
+    [InputControl(layout = "Vector2")]
+    [SerializeField]
+    private string _controlPath;
+
+    protected override string controlPathInternal
+    {
+        get => _controlPath;
+        set => _controlPath = value;
+    }
+
+    private ETouch.Finger activeFinger;
 
     private void OnEnable()
     {
@@ -20,14 +39,13 @@ public class FloatingJoystickHandler : MonoBehaviour
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerMove += OnFingerMove;
         ETouch.Touch.onFingerUp += OnFingerUp;
-
-        virtualGamepad = InputSystem.AddDevice<Gamepad>();
     }
 
     private void OnFingerDown(Finger finger)
     {
         Vector2 fingerPosition = finger.screenPosition;
-        if (activeFinger != null || fingerPosition.x > Screen.width * 0.5f) return;
+        ScreenSide fingerSide = fingerPosition.x <= Screen.width * 0.5f ? ScreenSide.Left : ScreenSide.Right;
+        if (activeFinger != null || fingerSide != joystickSide) return;
 
         activeFinger = finger;
         floatingJoystick.gameObject.SetActive(true);
@@ -61,7 +79,7 @@ public class FloatingJoystickHandler : MonoBehaviour
 
         floatingJoystick.Knob.anchoredPosition = knobPosition;
         Vector2 inputVector = knobPosition / joystickRadius;
-        InputSystem.QueueDeltaStateEvent(virtualGamepad.leftStick, inputVector);
+        SendValueToControl(inputVector);
     }
 
     private void OnFingerUp(Finger finger)
@@ -71,6 +89,8 @@ public class FloatingJoystickHandler : MonoBehaviour
         activeFinger = null;
         floatingJoystick.Knob.anchoredPosition = Vector2.zero;
         floatingJoystick.gameObject.SetActive(false);
+
+        SendValueToControl(Vector2.zero);
     }
 
     private void OnDisable()
