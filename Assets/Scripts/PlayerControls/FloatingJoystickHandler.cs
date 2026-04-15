@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -9,14 +10,18 @@ public class FloatingJoystickHandler : MonoBehaviour
     private FloatingJoystick floatingJoystick;
 
     private ETouch.Finger activeFinger;
-    private Vector2 dragDistance;
+
+    private Gamepad virtualGamepad;
 
     private void OnEnable()
     {
         ETouch.EnhancedTouchSupport.Enable();
+
         ETouch.Touch.onFingerDown += OnFingerDown;
         ETouch.Touch.onFingerMove += OnFingerMove;
         ETouch.Touch.onFingerUp += OnFingerUp;
+
+        virtualGamepad = InputSystem.AddDevice<Gamepad>();
     }
 
     private void OnFingerDown(Finger finger)
@@ -25,7 +30,6 @@ public class FloatingJoystickHandler : MonoBehaviour
         if (activeFinger != null || fingerPosition.x > Screen.width * 0.5f) return;
 
         activeFinger = finger;
-        dragDistance = Vector2.zero;
         floatingJoystick.gameObject.SetActive(true);
         floatingJoystick.RectTransform.anchoredPosition = ClampStartPosition(fingerPosition);
     }
@@ -56,7 +60,8 @@ public class FloatingJoystickHandler : MonoBehaviour
         }
 
         floatingJoystick.Knob.anchoredPosition = knobPosition;
-        dragDistance = knobPosition / joystickRadius;
+        Vector2 inputVector = knobPosition / joystickRadius;
+        InputSystem.QueueDeltaStateEvent(virtualGamepad.leftStick, inputVector);
     }
 
     private void OnFingerUp(Finger finger)
@@ -66,7 +71,6 @@ public class FloatingJoystickHandler : MonoBehaviour
         activeFinger = null;
         floatingJoystick.Knob.anchoredPosition = Vector2.zero;
         floatingJoystick.gameObject.SetActive(false);
-        dragDistance = Vector2.zero;
     }
 
     private void OnDisable()
