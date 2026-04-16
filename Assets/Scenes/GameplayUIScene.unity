@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 311180189}
   - component: {fileID: 311180191}
   - component: {fileID: 311180190}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameplayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

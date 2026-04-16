@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1235412221}
   - component: {fileID: 1235412222}
   - component: {fileID: 1235412223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
