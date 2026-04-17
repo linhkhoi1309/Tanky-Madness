@@ -13,6 +13,23 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void FixedUpdate()
+    {
+        lastVelocity = rb.linearVelocity;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Disable(); // Return bullet to pool instead of destroying it
+            return; // Ignore collision with player
+        }
+        var normal = collision.GetContact(0).normal;
+        var reflected = Vector2.Reflect(lastVelocity, normal).normalized * speed;
+        rb.linearVelocity = reflected;
+    }
+
     public void Move(Vector2 shootingDirection)
     {
         if (rb == null)
@@ -21,23 +38,11 @@ public class Bullet : MonoBehaviour
             return;
         }
         rb.linearVelocity = shootingDirection.normalized * speed;
-        Destroy(gameObject, lifetimeSeconds);
+        Invoke(nameof(Disable), lifetimeSeconds); // Automatically return to pool after lifetime expires
     }
 
-    void FixedUpdate()
+    public void Disable()
     {
-        lastVelocity = rb.linearVelocity;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject); // Destroy bullet on collision with player
-            return; // Ignore collision with player
-        }
-        var normal = collision.GetContact(0).normal;
-        var reflected = Vector2.Reflect(lastVelocity, normal).normalized * speed;
-        rb.linearVelocity = reflected;
+        ObjectPool.Instance.ReturnToPool("Bullet", gameObject);
     }
 }

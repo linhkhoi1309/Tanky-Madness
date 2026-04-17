@@ -9,11 +9,13 @@ public class PlayerShooter : MonoBehaviour
     {
         if (bulletPrefab != null && firePoint != null)
         {
-            GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            Bullet bulletScript = bulletInstance.GetComponent<Bullet>();
-            if (bulletScript != null)
+            // GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            
+            GameObject bulletInstance = ObjectPool.Instance.SpawnFromPool("Bullet", firePoint.position, Vector3.one, firePoint.rotation);
+            Bullet bullet = bulletInstance.GetComponent<Bullet>();
+            if (bullet != null)
             {
-                bulletScript.Move(GetShootingDirectionVector().normalized);
+                bullet.Move(GetShootingDirectionVector().normalized);
             }
         }
         else
