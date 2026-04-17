@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput)), 
 RequireComponent(typeof(PlayerMovement)), 
 RequireComponent(typeof(PlayerShooter)),
-RequireComponent(typeof(PlayerAudio))]
+RequireComponent(typeof(PlayerAudio)),
+RequireComponent(typeof(PlayerVFX)),
+]
 public class PlayerController : MonoBehaviour
 {
     private float moveInput;
@@ -14,12 +16,16 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerShooter playerShooter;
     private PlayerAudio playerAudio;
+    private PlayerVFX playerVFX;
+
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooter = GetComponent<PlayerShooter>();
         playerAudio = GetComponent<PlayerAudio>();
+        playerVFX = GetComponent<PlayerVFX>();
+
     }
 
     public void OnMove(InputValue value)
@@ -41,6 +47,12 @@ public class PlayerController : MonoBehaviour
     public void OnPoint(InputValue value)
     {
         mouseScreenPos = value.Get<Vector2>();
+    }
+
+    public void OnDeath()
+    {
+        playerVFX.PlayExplosionEffect();
+        Destroy(gameObject);
     }
 
     void Update()

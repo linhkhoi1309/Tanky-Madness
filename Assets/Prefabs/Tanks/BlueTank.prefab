@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueTank
       objectReference: {fileID: 0}
+    - target: {fileID: 2323148537472222432, guid: ab4cd880530f73547b2c345385cee661, type: 3}
+      propertyPath: explosionEffectPrefab
+      value: 
+      objectReference: {fileID: 1614174406685238657, guid: 3f466f437ae1a30418bf63eeef5a40ec, type: 3}
     - target: {fileID: 4283282493727881270, guid: ab4cd880530f73547b2c345385cee661, type: 3}
       propertyPath: m_Color.b
       value: 1

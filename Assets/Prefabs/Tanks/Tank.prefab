@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2318202007955310383}
   - component: {fileID: 1252415770936585655}
   - component: {fileID: 1778320935749910306}
+  - component: {fileID: 2323148537472222432}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -418,6 +419,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2323148537472222432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebebfa40e25ecfb4e944f921560492c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVFX
+  explosionEffectPrefab: {fileID: 2663304240814255280, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
 --- !u!1 &8192339899659206779
 GameObject:
   m_ObjectHideFlags: 0

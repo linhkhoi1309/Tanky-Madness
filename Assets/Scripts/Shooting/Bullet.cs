@@ -22,6 +22,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            if (playerController != null)            {
+                playerController.OnDeath();
+            }
             Disable(); // Return bullet to pool instead of destroying it
             return; // Ignore collision with player
         }
