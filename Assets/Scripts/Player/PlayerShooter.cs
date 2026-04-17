@@ -10,7 +10,7 @@ public class PlayerShooter : MonoBehaviour
         if (bulletPrefab != null && firePoint != null)
         {
             // GameObject bulletInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            
+
             GameObject bulletInstance = ObjectPool.Instance.SpawnFromPool("Bullet", firePoint.position, Vector3.one, firePoint.rotation);
             Bullet bullet = bulletInstance.GetComponent<Bullet>();
             if (bullet != null)
@@ -26,7 +26,7 @@ public class PlayerShooter : MonoBehaviour
 
     private Vector2 GetShootingDirectionVector()
     {
-        Vector2 shootingDirection = firePoint.position - transform.position; 
+        Vector2 shootingDirection = firePoint.position - transform.position;
         return shootingDirection;
     }
 
