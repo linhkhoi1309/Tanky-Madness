@@ -1,22 +1,26 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ParticleSystem)),
-RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class Explosion : MonoBehaviour
 {
 
-    private ParticleSystem m_explosionParticles;
+    [SerializeField]
+    private ParticleSystem m_fragmentParticles;
+
+    [SerializeField]
+    private ParticleSystem m_smokeParticles;
+
     private AudioSource m_explosionAudio;
 
     private void Awake()
     {
-        m_explosionParticles = GetComponent<ParticleSystem>();
         m_explosionAudio = GetComponent<AudioSource>();
     }
 
     void Start()
     {
         m_explosionAudio.Play();
-        m_explosionParticles.Play();
+        m_fragmentParticles.Play();
+        m_smokeParticles.Play();
     }
 }

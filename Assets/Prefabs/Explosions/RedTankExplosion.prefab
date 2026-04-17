@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1093617748875994201, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093617748875994201, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093617748875994201, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2663304240814255280, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
       propertyPath: m_Name
       value: RedTankExplosion
