@@ -8,6 +8,74 @@
 
 ## Miscellaneous 
 
+### Brian Kernighan's Algorithm (Counting Set Bits)
+
+#### 📌 What is it?
+Brian Kernighan's Algorithm is an efficient method to **count the number of set bits (1s)** in the binary representation of a number.
+
+It is also known as:
+- Bit counting
+- Population count (popcount)
+
+#### 🎯 Key Idea
+
+Instead of checking every bit one by one, the algorithm:
+
+👉 **Removes the lowest set bit in each iteration**
+
+This continues until the number becomes 0.
+
+#### 🧠 How It Works (Step-by-Step)
+
+Given a number:
+
+1. Start with the original number
+2. Repeat while the number is not zero:
+   - Remove the lowest set bit
+   - Increase a counter
+3. When the number becomes zero → stop
+4. The counter is the number of set bits
+
+#### 🔍 Core Operation
+
+n = n & (n - 1)
+
+- Subtracting 1 flips:
+  - The rightmost `1` → `0`
+  - All bits to the right → `1`
+- AND operation (`&`) removes the rightmost `1`(s)
+
+- Example: n = 0101 1000
+  - 1 -> 0000 0001 (1's complement) -> 1111 1110 + 1 -> 1111 1111 (2's complement)
+  - n - 1 = n + (-1) = n + 2's complement of 1
+  - 0101 1000 +	1111 1111 = 0101 0111
+  - n & 0101 0111 = 0101 0000
+
+#### ⚡ Time Complexity
+
+- Runs in **O(k)**  where `k = number of set bits`
+
+👉 Faster than naive approach:
+- Naive: O(n) (check all bits)
+- Kernighan: O(k)
+
+#### 🚀 Advantages
+
+- Very efficient for sparse numbers (few 1s)
+- Simple and elegant
+- Widely used in low-level and performance-critical code
+
+#### 🎮 Use Cases
+
+- Bitmasking (games, grids, puzzles)
+- Counting flags or states
+- Graph algorithms
+- Competitive programming
+- Low-level optimizations
+
+---
+
+
 ### Object Pooling in Unity
 Object Pooling is a technique where you **reuse existing objects instead of creating and destroying them repeatedly**.
 
