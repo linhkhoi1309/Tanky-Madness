@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c43aa5177567248bab7ac9851b4e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeBuilderTest
-  size: {x: 8, y: 8}
+  size: {x: 20, y: 20}
   seed: 220
   backgroundColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 0}
 --- !u!1 &2099163217

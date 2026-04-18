@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 307441137691509853}
   - component: {fileID: 2611322776123631315}
   - component: {fileID: 4405074184720734171}
+  - component: {fileID: 5193128143195368857}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -269,3 +270,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5193128143195368857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42454159797716194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23e4313079bd384fba483915282a754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletAudio
+  bouncingSounds:
+  - {fileID: 8300000, guid: 3e2d6b0c1904811468fc63d8f151ea16, type: 3}
+  - {fileID: 8300000, guid: 29927ebf3b0888642bf43be358e6f6d8, type: 3}
