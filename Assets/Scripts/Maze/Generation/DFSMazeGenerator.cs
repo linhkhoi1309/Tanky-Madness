@@ -1,23 +1,25 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
+using Random = System.Random;
 
 public class DFSMazeGenerator : IMazeGenerator
 {
     public void Generate(MazeGrid grid, Random rng)
     {
         bool[,] visited = new bool[grid.Width, grid.Height];
-        Stack<Vector2i> stack = new();
+        Stack<Vector2Int> stack = new();
 
-        Vector2i start = grid.PickRandomCell(rng);
-        visited[start.X, start.Y] = true;
+        Vector2Int start = grid.PickRandomCell(rng);
+        visited[start.x, start.y] = true;
         stack.Push(start);
 
         while (stack.Count > 0)
         {
-            Vector2i current = stack.Peek();
+            Vector2Int current = stack.Peek();
 
-            List<(Vector2i, Direction)> unvisitedNeighbors = grid.GetNeighbors(current, neighbor => !visited[neighbor.X, neighbor.Y]).ToList();
+            List<(Vector2Int, Direction)> unvisitedNeighbors = grid.GetNeighbors(current, neighbor => !visited[neighbor.x, neighbor.y]).ToList();
 
             if (unvisitedNeighbors.Count == 0)
             {
@@ -29,7 +31,7 @@ public class DFSMazeGenerator : IMazeGenerator
 
             grid.Connect(current, direction);
 
-            visited[next.X, next.Y] = true;
+            visited[next.x, next.y] = true;
             stack.Push(next);
         }
     }

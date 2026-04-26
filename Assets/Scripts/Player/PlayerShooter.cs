@@ -15,6 +15,7 @@ public class PlayerShooter : MonoBehaviour
             Bullet bullet = bulletInstance.GetComponent<Bullet>();
             if (bullet != null)
             {
+                bullet.SetOwner(gameObject);
                 bullet.Move(GetShootingDirectionVector().normalized);
             }
         }

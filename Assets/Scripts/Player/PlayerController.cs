@@ -6,6 +6,7 @@ RequireComponent(typeof(PlayerMovement)),
 RequireComponent(typeof(PlayerShooter)),
 RequireComponent(typeof(PlayerAudio)),
 RequireComponent(typeof(PlayerVFX)),
+RequireComponent(typeof(PlayerPowerups)),
 ]
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private PlayerShooter playerShooter;
     private PlayerAudio playerAudio;
     private PlayerVFX playerVFX;
+    private PlayerPowerups playerPowerups;
 
     void Awake()
     {
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
         playerShooter = GetComponent<PlayerShooter>();
         playerAudio = GetComponent<PlayerAudio>();
         playerVFX = GetComponent<PlayerVFX>();
+        playerPowerups = GetComponent<PlayerPowerups>();
 
     }
 
@@ -51,6 +54,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnDeath()
     {
+        if (playerPowerups != null && playerPowerups.HasActiveShield())
+        {
+            return;
+        }
         playerVFX.PlayExplosionEffect();
         Destroy(gameObject);
     }

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class DirectionExtensions
 {
@@ -10,12 +11,12 @@ public static class DirectionExtensions
         Direction.West
     };
 
-    public static Vector2i ToOffset(this Direction dir) => dir switch
+    public static Vector2Int ToOffset(this Direction dir) => dir switch
     {
-        Direction.North => new Vector2i(0, 1),
-        Direction.East => new Vector2i(1, 0),
-        Direction.South => new Vector2i(0, -1),
-        Direction.West => new Vector2i(-1, 0),
+        Direction.North => new Vector2Int(0, 1),
+        Direction.East => new Vector2Int(1, 0),
+        Direction.South => new Vector2Int(0, -1),
+        Direction.West => new Vector2Int(-1, 0),
         _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null),
     };
 

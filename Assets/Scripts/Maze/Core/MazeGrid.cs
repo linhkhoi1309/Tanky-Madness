@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using Random = System.Random;
 
 public class MazeGrid
 {
@@ -9,7 +11,7 @@ public class MazeGrid
     private readonly MazeCell[,] _cells;
     public MazeCell this[int x, int y] => _cells[x, y];
 
-    public IEnumerable<(Vector2i pos, MazeCell cell)> Cells
+    public IEnumerable<(Vector2Int pos, MazeCell cell)> Cells
     {
         get
         {
@@ -17,7 +19,7 @@ public class MazeGrid
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    yield return (new Vector2i(x, y), _cells[x, y]);
+                    yield return (new Vector2Int(x, y), _cells[x, y]);
                 }
             }
         }
@@ -39,22 +41,22 @@ public class MazeGrid
         }
     }
 
-    public Vector2i PickRandomCell(Random rng)
+    public Vector2Int PickRandomCell(Random rng)
     {
-        return new Vector2i(rng.Next(0, Width), rng.Next(0, Height));
+        return new Vector2Int(rng.Next(0, Width), rng.Next(0, Height));
     }
 
-    public bool IsInBounds(Vector2i cell)
+    public bool IsInBounds(Vector2Int cell)
     {
-        return cell.X >= 0 && cell.X < Width && cell.Y >= 0 && cell.Y < Height;
+        return cell.x >= 0 && cell.x < Width && cell.y >= 0 && cell.y < Height;
     }
 
-    public IEnumerable<(Vector2i position, Direction direction)> GetNeighbors(Vector2i cell, Func<Vector2i, bool> condition)
+    public IEnumerable<(Vector2Int position, Direction direction)> GetNeighbors(Vector2Int cell, Func<Vector2Int, bool> condition)
     {
         foreach (var direction in DirectionExtensions.All)
         {
             var offset = direction.ToOffset();
-            Vector2i neighbor = cell + offset;
+            Vector2Int neighbor = cell + offset;
 
             if (!IsInBounds(neighbor) || !condition(neighbor))
                 continue;
@@ -63,12 +65,12 @@ public class MazeGrid
         }
     }
 
-    public void Connect(Vector2i from, Direction direction)
+    public void Connect(Vector2Int from, Direction direction)
     {
         var offset = direction.ToOffset();
         var to = from + offset;
 
-        _cells[from.X, from.Y].RemoveWall(direction);
-        _cells[to.X, to.Y].RemoveWall(direction.Opposite());
+        _cells[from.x, from.y].RemoveWall(direction);
+        _cells[to.x, to.y].RemoveWall(direction.Opposite());
     }
 }

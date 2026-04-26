@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     private BulletAudio bulletAudio;
     private Rigidbody2D rb;
     private Vector2 lastVelocity;
+    private GameObject owner;
 
     void Awake()
     {
@@ -26,9 +27,13 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            PlayerPowerups playerPowerups = collision.gameObject.GetComponent<PlayerPowerups>();
             if (playerController != null)
             {
-                playerController.OnDeath();
+                if (playerPowerups == null || !playerPowerups.HasActiveShield())
+                {
+                    playerController.OnDeath();
+                }
             }
             Disable(); // Return bullet to pool instead of destroying it
             return; // Ignore collision with player
@@ -53,8 +58,24 @@ public class Bullet : MonoBehaviour
         Invoke(nameof(Disable), lifetimeSeconds); // Automatically return to pool after lifetime expires
     }
 
+    public void SetOwner(GameObject bulletOwner)
+    {
+        owner = bulletOwner;
+    }
+
+    public bool IsOwnedBy(GameObject possibleOwner)
+    {
+        return owner == possibleOwner;
+    }
+
     public void Disable()
     {
+        CancelInvoke(nameof(Disable));
+        owner = null;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
         ObjectPool.Instance.ReturnToPool("Bullet", gameObject);
     }
 }

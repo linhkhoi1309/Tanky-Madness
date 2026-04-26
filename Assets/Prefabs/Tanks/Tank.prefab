@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 1252415770936585655}
   - component: {fileID: 1778320935749910306}
   - component: {fileID: 2323148537472222432}
+  - component: {fileID: 5376317210159223201}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
   shootingClip: {fileID: 8300000, guid: 22c03fc37e458724e9ea9eff380cfd6a, type: 3}
+  powerupPickupClip: {fileID: 8300000, guid: 93b02fa7b3592a046b618ef92ce6873a, type: 3}
 --- !u!82 &1778320935749910306
 AudioSource:
   m_ObjectHideFlags: 0
@@ -432,6 +434,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVFX
   explosionEffectPrefab: {fileID: 2663304240814255280, guid: bc4a0227446413e4396d2b6fc27b2ac9, type: 3}
+--- !u!114 &5376317210159223201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433ad282d50638c43974f2e4f6da12bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPowerups
+  shieldDurationSeconds: 8
+  shieldVisualPrefab: {fileID: 3469614720816149792, guid: 432de22ede73e4944ad3b1146a0d25a6, type: 3}
+  shieldBlinkWarningSeconds: 2
+  shieldBlinkIntervalSeconds: 0.15
 --- !u!1 &8192339899659206779
 GameObject:
   m_ObjectHideFlags: 0

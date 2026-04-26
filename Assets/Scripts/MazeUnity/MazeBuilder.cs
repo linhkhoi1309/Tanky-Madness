@@ -20,32 +20,32 @@ public class MazeBuilder : MonoBehaviour
         {
             if (cell.HasWall(Direction.South))
             {
-                Vector3 pos = new(position.X + 0.5f, position.Y, 0);
+                Vector3 pos = new(position.x + 0.5f, position.y, 0);
                 GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallContainer.transform);
-                wall.name = $"V_Wall_{position.X}_{position.Y}";
+                wall.name = $"V_Wall_{position.x}_{position.y}";
             }
 
             if (cell.HasWall(Direction.West))
             {
-                Vector3 pos = new(position.X, position.Y + 0.5f, 0);
+                Vector3 pos = new(position.x, position.y + 0.5f, 0);
                 Quaternion rot = Quaternion.Euler(0, 0, 90f);
                 GameObject wall = Instantiate(wallPrefab, pos, rot, wallContainer.transform);
-                wall.name = $"H_Wall_{position.X}_{position.Y}";
+                wall.name = $"H_Wall_{position.x}_{position.y}";
             }
 
-            if (position.X == grid.Width - 1 && cell.HasWall(Direction.East))
+            if (position.x == grid.Width - 1 && cell.HasWall(Direction.East))
             {
-                Vector3 pos = new(position.X + 1f, position.Y + 0.5f, 0);
+                Vector3 pos = new(position.x + 1f, position.y + 0.5f, 0);
                 Quaternion rot = Quaternion.Euler(0, 0, 90f);
                 GameObject wall = Instantiate(wallPrefab, pos, rot, wallContainer.transform);
-                wall.name = $"H_Wall_{position.X}_E";
+                wall.name = $"H_Wall_{position.x}_E";
             }
 
-            if (position.Y == grid.Height - 1 && cell.HasWall(Direction.North))
+            if (position.y == grid.Height - 1 && cell.HasWall(Direction.North))
             {
-                Vector3 pos = new(position.X + 0.5f, position.Y + 1f, 0);
+                Vector3 pos = new(position.x + 0.5f, position.y + 1f, 0);
                 GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallContainer.transform);
-                wall.name = $"V_Wall_{position.X}_N";
+                wall.name = $"V_Wall_{position.x}_N";
             }
         }
     }
