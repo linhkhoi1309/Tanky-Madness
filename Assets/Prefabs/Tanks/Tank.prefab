@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5905726863038927946}
   - component: {fileID: 674143372907419378}
   m_Layer: 0
-  m_Name: turret0_0
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,14 +132,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7467507397051373098}
-  - component: {fileID: -1478317221390315863}
   - component: {fileID: 7666100802158615604}
   - component: {fileID: 6835364499619064978}
-  - component: {fileID: 3862956607263371985}
-  - component: {fileID: 5592332325827746736}
-  - component: {fileID: 2318202007955310383}
-  - component: {fileID: 1252415770936585655}
   - component: {fileID: 1778320935749910306}
+  - component: {fileID: 4447903853390005671}
+  - component: {fileID: 2514310641605335180}
+  - component: {fileID: 6182159120400761807}
+  - component: {fileID: 7198932966091362643}
+  - component: {fileID: 2676210515298413834}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -164,18 +164,6 @@ Transform:
   - {fileID: 5905726863038927946}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1478317221390315863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c9583452a174f48b388314e9db3940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!50 &7666100802158615604
 Rigidbody2D:
   serializedVersion: 5
@@ -249,78 +237,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &3862956607263371985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &5592332325827746736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d48fe2026c35c24f9d6f584897a10d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
-  rotateSpeed: 200
-  stoppingDistance: 0.2
---- !u!114 &2318202007955310383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a8dfb2486f84994aa19caac073fa272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooter
-  bulletPrefab: {fileID: 42454159797716194, guid: a8b16bf63a5173b40b004f4218c01c15, type: 3}
-  firePoint: {fileID: 5916011640443345545}
---- !u!114 &1252415770936585655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ec2ff2da0bc944783c0abe8cf9df8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
-  shootingClip: {fileID: 8300000, guid: 22c03fc37e458724e9ea9eff380cfd6a, type: 3}
 --- !u!82 &1778320935749910306
 AudioSource:
   m_ObjectHideFlags: 0
@@ -418,6 +334,78 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4447903853390005671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84c1561bc6d4a04391092132699d65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankAudio
+  weapon: {fileID: 2676210515298413834}
+  audioSource: {fileID: 1778320935749910306}
+  fireClip: {fileID: 8300000, guid: 22c03fc37e458724e9ea9eff380cfd6a, type: 3}
+--- !u!114 &2514310641605335180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3640d591a52563841873895f59a5b01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankController
+  movement: {fileID: 7198932966091362643}
+  aim: {fileID: 6182159120400761807}
+  weapon: {fileID: 2676210515298413834}
+--- !u!114 &6182159120400761807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d54aa0816caff3429d9d8e5a679d763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankAimController
+  turret: {fileID: 5905726863038927946}
+  rotateSpeed: 180
+--- !u!114 &7198932966091362643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0a9c7c58266ed46a03fa9f91b245d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankMovementController
+  rotateSpeed: 200
+  moveSpeed: 5
+--- !u!114 &2676210515298413834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845006509808993245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1cf38f4917b5e44baceed5377c5a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankWeaponController
+  bulletPrefab: {fileID: 42454159797716194, guid: a8b16bf63a5173b40b004f4218c01c15, type: 3}
+  firePoint: {fileID: 5916011640443345545}
 --- !u!1 &8192339899659206779
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +417,7 @@ GameObject:
   - component: {fileID: 3920396112534725535}
   - component: {fileID: 4283282493727881270}
   m_Layer: 0
-  m_Name: base_0
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
