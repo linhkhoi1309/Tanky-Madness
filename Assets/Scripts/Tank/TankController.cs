@@ -10,9 +10,15 @@ public class TankController : MonoBehaviour
 
     private ITankInput input;
 
-    private void Awake()
+    private void Start()
     {
         input = GetComponent<ITankInput>();
+
+        if (input == null)
+        {
+            Debug.LogError("Tank Input is not assigned in " + gameObject.name, this);
+            enabled = false;
+        }
     }
 
     private void Update()

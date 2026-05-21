@@ -8,6 +8,7 @@ public class TankWeaponController : MonoBehaviour
     [SerializeField] Transform firePoint;
 
     public event Action Fired;
+    public Transform FirePoint => firePoint;
 
     public void Fire()
     {

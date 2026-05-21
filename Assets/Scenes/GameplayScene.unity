@@ -209,13 +209,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJoinScript
   players:
-  - {fileID: 683363198688943576, guid: baf4eacee262c494f8bc83dba42d6be5, type: 3}
-  - {fileID: 1905883303989774805, guid: 8482e09bc39e7ba4795f4ab8b0a8e3dc, type: 3}
-  - {fileID: 7678421688768824232, guid: 8bc928c4d18cccb48b9617229280eeea, type: 3}
-  spawnPositions:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 1, z: 0}
+  - tankPrefab: {fileID: 1845006509808993245, guid: ab4cd880530f73547b2c345385cee661, type: 3}
+    controlType: 0
+    spawnPoint: {fileID: 0}
+    fallbackSpawnPosition: {x: 0, y: 0, z: 0}
+    moveAction: {fileID: 7797211033936998425, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    fireAction: {fileID: 6962943944140817727, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    aimAction: {fileID: 0}
+    mainCamera: {fileID: 519420031}
+  - tankPrefab: {fileID: 0}
+    controlType: 0
+    spawnPoint: {fileID: 0}
+    fallbackSpawnPosition: {x: 0, y: 0, z: 0}
+    moveAction: {fileID: 0}
+    fireAction: {fileID: 0}
+    aimAction: {fileID: 0}
+    mainCamera: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

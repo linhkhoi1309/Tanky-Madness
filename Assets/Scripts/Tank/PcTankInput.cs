@@ -14,18 +14,39 @@ public class PcTankInput : MonoBehaviour, ITankInput
 
     private void OnEnable()
     {
-        moveAction.action.Enable();
-        fireAction.action.Enable();
+        EnableActions();
     }
 
     private void OnDisable()
     {
-        moveAction.action.Disable();
-        fireAction.action.Disable();
+        DisableActions();
+    }
+
+    public void Configure(InputActionReference moveAction, InputActionReference fireAction, Transform aimOrigin, Camera mainCamera)
+    {
+        DisableActions();
+
+        this.moveAction = moveAction;
+        this.fireAction = fireAction;
+        this.aimOrigin = aimOrigin;
+        this.mainCamera = mainCamera;
+
+        if (isActiveAndEnabled)
+        {
+            EnableActions();
+        }
     }
 
     private void Update()
     {
+        if (moveAction == null || fireAction == null || aimOrigin == null || mainCamera == null || Pointer.current == null)
+        {
+            Move = Vector2.zero;
+            AimDirection = Vector2.zero;
+            FireTriggered = false;
+            return;
+        }
+
         Move = moveAction.action.ReadValue<Vector2>();
 
         Vector2 pointerScreen = Pointer.current.position.ReadValue();
@@ -35,6 +56,18 @@ public class PcTankInput : MonoBehaviour, ITankInput
         AimDirection = ((Vector2)(pointerWorld - aimOrigin.position)).normalized;
 
         FireTriggered = fireAction.action.WasPressedThisFrame();
+    }
+
+    private void EnableActions()
+    {
+        if (moveAction != null) moveAction.action.Enable();
+        if (fireAction != null) fireAction.action.Enable();
+    }
+
+    private void DisableActions()
+    {
+        if (moveAction != null) moveAction.action.Disable();
+        if (fireAction != null) fireAction.action.Disable();
     }
 
 #if UNITY_EDITOR

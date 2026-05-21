@@ -16,18 +16,36 @@ public class MobileTankInput : MonoBehaviour, ITankInput
 
     private void OnEnable()
     {
-        moveAction.action.Enable();
-        aimAction.action.Enable();
+        EnableActions();
     }
 
     private void OnDisable()
     {
-        moveAction.action.Disable();
-        aimAction.action.Disable();
+        DisableActions();
+    }
+
+    public void Configure(InputActionReference moveAction, InputActionReference aimAction)
+    {
+        DisableActions();
+
+        this.moveAction = moveAction;
+        this.aimAction = aimAction;
+
+        if (isActiveAndEnabled)
+        {
+            EnableActions();
+        }
     }
 
     private void Update()
     {
+        if (moveAction == null || aimAction == null)
+        {
+            Move = Vector2.zero;
+            FireTriggered = false;
+            return;
+        }
+
         Move = moveAction.action.ReadValue<Vector2>();
 
         Vector2 rawAim = aimAction.action.ReadValue<Vector2>();
@@ -51,6 +69,18 @@ public class MobileTankInput : MonoBehaviour, ITankInput
                 wasAiming = false;
             }
         }
+    }
+
+    private void EnableActions()
+    {
+        if (moveAction != null) moveAction.action.Enable();
+        if (aimAction != null) aimAction.action.Enable();
+    }
+
+    private void DisableActions()
+    {
+        if (moveAction != null) moveAction.action.Disable();
+        if (aimAction != null) aimAction.action.Disable();
     }
 
 #if UNITY_EDITOR
