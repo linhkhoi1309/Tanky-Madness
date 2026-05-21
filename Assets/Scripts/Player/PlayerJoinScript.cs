@@ -103,12 +103,13 @@ public class PlayerJoinScript : MonoBehaviour
 
     private Transform ResolveAimOrigin(GameObject tank)
     {
-        TankWeaponController weapon = tank.GetComponentInChildren<TankWeaponController>();
-        if (weapon != null && weapon.FirePoint != null)
+        TankAimController aim = tank.GetComponentInChildren<TankAimController>();
+        if (aim != null)
         {
-            return weapon.FirePoint;
+            return aim.transform;
         }
 
+        Debug.LogWarning($"{tank.name} has no TankAimController. Tank transform will be used as aim origin.", tank);
         return tank.transform;
     }
 
@@ -141,6 +142,11 @@ public class PlayerJoinScript : MonoBehaviour
         if (prefab.GetComponent<TankController>() == null)
         {
             Debug.LogWarning($"{prefab.name} does not have a TankController.", prefab);
+        }
+
+        if (prefab.GetComponentInChildren<TankAimController>() == null)
+        {
+            Debug.LogWarning($"{prefab.name} does not have a TankAimController in its hierarchy.", prefab);
         }
 
         ValidateInputConfig(player, index);

@@ -217,14 +217,6 @@ MonoBehaviour:
     fireAction: {fileID: 6962943944140817727, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     aimAction: {fileID: 0}
     mainCamera: {fileID: 519420031}
-  - tankPrefab: {fileID: 0}
-    controlType: 0
-    spawnPoint: {fileID: 0}
-    fallbackSpawnPosition: {x: 0, y: 0, z: 0}
-    moveAction: {fileID: 0}
-    fireAction: {fileID: 0}
-    aimAction: {fileID: 0}
-    mainCamera: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

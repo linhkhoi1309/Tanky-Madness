@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5905726863038927946}
   - component: {fileID: 674143372907419378}
+  - component: {fileID: 7918413046971828270}
+  - component: {fileID: 3847206454108192661}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -92,6 +94,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7918413046971828270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74712203273473407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d54aa0816caff3429d9d8e5a679d763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankAimController
+  rotateSpeed: 180
+--- !u!114 &3847206454108192661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74712203273473407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1cf38f4917b5e44baceed5377c5a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankWeaponController
+  bulletPrefab: {fileID: 42454159797716194, guid: a8b16bf63a5173b40b004f4218c01c15, type: 3}
+  firePoint: {fileID: 5916011640443345545}
 --- !u!1 &1585477114274865415
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5916011640443345545}
   m_Layer: 0
-  m_Name: ShootingPoint
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,9 +166,7 @@ GameObject:
   - component: {fileID: 1778320935749910306}
   - component: {fileID: 4447903853390005671}
   - component: {fileID: 2514310641605335180}
-  - component: {fileID: 6182159120400761807}
   - component: {fileID: 7198932966091362643}
-  - component: {fileID: 2676210515298413834}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -346,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84c1561bc6d4a04391092132699d65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankAudio
-  weapon: {fileID: 2676210515298413834}
+  weapon: {fileID: 3847206454108192661}
   audioSource: {fileID: 1778320935749910306}
   fireClip: {fileID: 8300000, guid: 22c03fc37e458724e9ea9eff380cfd6a, type: 3}
 --- !u!114 &2514310641605335180
@@ -362,22 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankController
   movement: {fileID: 7198932966091362643}
-  aim: {fileID: 6182159120400761807}
-  weapon: {fileID: 2676210515298413834}
---- !u!114 &6182159120400761807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d54aa0816caff3429d9d8e5a679d763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TankAimController
-  turret: {fileID: 5905726863038927946}
-  rotateSpeed: 180
+  aim: {fileID: 7918413046971828270}
+  weapon: {fileID: 3847206454108192661}
 --- !u!114 &7198932966091362643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,20 +405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankMovementController
   rotateSpeed: 200
   moveSpeed: 5
---- !u!114 &2676210515298413834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845006509808993245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1cf38f4917b5e44baceed5377c5a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TankWeaponController
-  bulletPrefab: {fileID: 42454159797716194, guid: a8b16bf63a5173b40b004f4218c01c15, type: 3}
-  firePoint: {fileID: 5916011640443345545}
 --- !u!1 &8192339899659206779
 GameObject:
   m_ObjectHideFlags: 0
