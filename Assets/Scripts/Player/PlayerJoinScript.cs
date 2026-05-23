@@ -18,6 +18,7 @@ public class PlayerSpawnConfig
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference fireAction;
     [SerializeField] private InputActionReference aimAction;
+    [SerializeField] private InputActionReference pointAction;
     [SerializeField] private Camera mainCamera;
 
     public GameObject TankPrefab => tankPrefab;
@@ -27,6 +28,7 @@ public class PlayerSpawnConfig
     public InputActionReference MoveAction => moveAction;
     public InputActionReference FireAction => fireAction;
     public InputActionReference AimAction => aimAction;
+    public InputActionReference PointAction => pointAction;
     public Camera MainCamera => mainCamera;
 }
 
